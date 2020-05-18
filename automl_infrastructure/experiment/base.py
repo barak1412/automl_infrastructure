@@ -13,7 +13,7 @@ from sklearn.utils import shuffle
 from automl_infrastructure.classifiers import ClassifierPrediction
 from automl_infrastructure.experiment.metrics.standard_metrics import ObjectiveFactory
 from automl_infrastructure.experiment.params import OptunaParameterSuggestor
-from automl_infrastructure.experiment.utils import random_str
+from automl_infrastructure.utils import random_str
 
 
 class Experiment(object):
