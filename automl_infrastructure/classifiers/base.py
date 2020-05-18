@@ -62,7 +62,7 @@ class BasicClassifier(Classifier, ABC):
             return False
 
         # for non-empty DataFrame we should check for list or numpy array type
-        list_supported_types = [list, np.array]
+        list_supported_types = [list, np.array, np.ndarray]
         for supported_type in list_supported_types:
             if (df[feature].apply(type) == supported_type).all():
                 return True
