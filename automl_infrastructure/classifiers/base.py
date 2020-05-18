@@ -69,22 +69,28 @@ class BasicClassifier(Classifier, ABC):
         return False
 
     def _unroll_list_feature(self, df, feature):
-        # retrieve feature vector length, assuming DataFrame isn't empty
-        vector_dim = len(df[feature][0])
+        if feature in self._vector_features_mapping:
+            new_column_names = self._vector_features_mapping[feature]
+        else:
+            # retrieve feature vector length, assuming DataFrame isn't empty
+            vector_dim = len(df[feature][0])
 
-        # generate columns
-        random_postfix = random_str(5)
-        new_column_names = ['{}_{}_{}'.format(feature, random_postfix, i) for i in range(vector_dim)]
-        self._vector_features_mapping[feature] = new_column_names
+            # generate columns
+            random_postfix = random_str(5)
+            new_column_names = ['{}_{}_{}'.format(feature, random_postfix, i) for i in range(vector_dim)]
+            self._vector_features_mapping[feature] = new_column_names
+
         df[new_column_names] = pd.DataFrame(df[feature].tolist(), index=df.index)
         del df[feature]
 
-    def _get_effective_x(self, x):
+    def _get_effective_x(self, x, reset_features_mapping=False):
         if self._features_cols is not None:
             # narrow down features
             effective_x = x[self._features_cols]
         else:
             effective_x = x
+        if reset_features_mapping:
+            self._vector_features_mapping.clear()
 
         # unroll list type (a.k.a vector type) features to several features
         features_lst = [c for c in effective_x]
@@ -94,15 +100,15 @@ class BasicClassifier(Classifier, ABC):
         return effective_x
 
     def fit(self, x, y, **kwargs):
-        x = self._get_effective_x(x)
+        x = self._get_effective_x(x, reset_features_mapping=True)
         self._fit(x, y, **kwargs)
 
     def predict(self, x):
-        x = self._get_effective_x(x)
+        x = self._get_effective_x(x, reset_features_mapping=False)
         return self._predict(x)
 
     def predict_proba(self, x):
-        x = self._get_effective_x(x)
+        x = self._get_effective_x(x, reset_features_mapping=False)
         return self._predict_proba(x)
 
     def _predict(self, x):
