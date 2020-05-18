@@ -1,8 +1,8 @@
-from automl_infrastructure.classifiers import Classifier
+from automl_infrastructure.classifiers import BasicClassifier
 from sklearn.preprocessing import LabelEncoder
 
 
-class SklearnClassifierAdapter(Classifier):
+class SklearnClassifierAdapter(BasicClassifier):
 
     def __init__(self, name, sklearn_model, features_cols=None, encode_labels=False):
         super().__init__(name, features_cols=features_cols)
@@ -11,29 +11,19 @@ class SklearnClassifierAdapter(Classifier):
         if encode_labels:
             self._label_encoder = LabelEncoder()
 
-    def _get_effective_x(self, x):
-        if self._features_cols is not None:
-            effective_x = x[self._features_cols]
-        else:
-            effective_x = x
-        return effective_x
-
-    def fit(self, x, y, **kwargs):
-        x = self._get_effective_x(x)
+    def _fit(self, x, y, **kwargs):
         if self._encode_labels:
             self._label_encoder.fit(y)
             y = self._label_encoder.transform(y)
         self._sklearn_model.fit(x, y, **kwargs)
 
-    def predict(self, x):
-        x = self._get_effective_x(x)
+    def _predict(self, x):
         prediction_df = self._sklearn_model.predict(x)
         if self._encode_labels:
             prediction_df = self._label_encoder.inverse_transform(prediction_df)
         return prediction_df
 
-    def predict_proba(self, x):
-        x = self._get_effective_x(x)
+    def _predict_proba(self, x):
         prediction_df = self._sklearn_model.predict_proba(x)
         return prediction_df
 
