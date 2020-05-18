@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 import numpy as np
+import pandas as pd
 from automl_infrastructure.utils import random_str
 
 
@@ -73,8 +74,10 @@ class BasicClassifier(Classifier, ABC):
 
         # generate columns
         random_postfix = random_str(5)
-        new_column_names = ['{}_{]_{}'.format(feature, random_postfix, i) for i in range(vector_dim)]
+        new_column_names = ['{}_{}_{}'.format(feature, random_postfix, i) for i in range(vector_dim)]
         self._vector_features_mapping[feature] = new_column_names
+        df[new_column_names] = pd.DataFrame(df[feature].tolist(), index=df.index)
+        del df[feature]
 
     def _get_effective_x(self, x):
         if self._features_cols is not None:
@@ -87,7 +90,7 @@ class BasicClassifier(Classifier, ABC):
         features_lst = [c for c in effective_x]
         for feature in features_lst:
             if BasicClassifier._is_feature_list_type(effective_x, feature):
-                effective_x = self._unroll_list_feature(effective_x, feature)
+                self._unroll_list_feature(effective_x, feature)
         return effective_x
 
     def fit(self, x, y, **kwargs):
