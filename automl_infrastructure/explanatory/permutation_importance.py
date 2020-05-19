@@ -10,7 +10,7 @@ class PermutationImportance(object):
         self._scoring = parse_objective(scoring)
 
         self._n_iter = n_iter
-        self._rng = check_random_state(random_state)
+        self._rng = np.random.RandomState(seed=random_state)
         self._estimator = estimator
 
     def fit(self, X, y):
@@ -37,6 +37,6 @@ class PermutationImportance(object):
     def _iter_shuffled(self, X, feature):
         X_res = X.copy()
         for i in range(self._n_iter):
-            X_res[feature] = np.random.RandomState(seed=42).permutation(X[feature].values)
+            X_res[feature] = self._rng.permutation(X[feature].values)
             yield X_res
             X_res[feature] = X[feature]
