@@ -1,6 +1,6 @@
 from automl_infrastructure.experiment.metrics.utils import parse_objective
 from automl_infrastructure.classifiers import ClassifierPrediction
-from sklearn.utils import check_random_state
+import pandas as pd
 import numpy as np
 
 
@@ -13,15 +13,27 @@ class PermutationImportance(object):
         self._rng = np.random.RandomState(seed=random_state)
         self._estimator = estimator
 
+        self._scores_decreases = None
+
     def fit(self, X, y):
         # calculate base scoring
         base_score = self._calculate_score(X, y)
 
-        scores_decreases = {}
+        self._scores_decreases = {}
         for feature in X:
-            scores_decreases[feature] = self._get_scores_shuffled(X, y, feature)
-            scores_decreases[feature] = [base_score - score for score in scores_decreases[feature]]
-        print(scores_decreases)
+            self._scores_decreases[feature] = self._get_scores_shuffled(X, y, feature)
+            self._scores_decreases[feature] = [base_score - score for score in self._scores_decreases[feature]]
+
+    def show_weights(self):
+        if self._scores_decreases is None:
+            raise Exception('Can not show weights for unfitted PermutationImportance.')
+        # create DataFrame and show it
+        rows = []
+        for feature in self._scores_decreases:
+            rows.append([feature, np.mean(self._scores_decreases[feature]), np.std(self._scores_decreases[feature])])
+        df = pd.DataFrame(rows, columns=['Feature', 'Weight', 'Std']).sort_values(by='Weight', ascending=False)\
+                .reset_index(drop=True)
+        print(df)
 
     def _calculate_score(self, X, y):
         pred_y = self._estimator.predict(X)
