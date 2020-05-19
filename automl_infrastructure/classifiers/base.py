@@ -89,6 +89,7 @@ class BasicClassifier(Classifier, ABC):
             effective_x = x[self._features_cols]
         else:
             effective_x = x
+        effective_x = effective_x.copy()
         if reset_features_mapping:
             self._vector_features_mapping.clear()
 
