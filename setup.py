@@ -14,9 +14,9 @@ setup(
               'automl_infrastructure.utils', 'automl_infrastructure.experiment', 'automl_infrastructure.experiment.metrics',
               'automl_infrastructure.experiment.observations', 'automl_infrastructure.visualization',
               'automl_infrastructure.pipeline', 'automl_infrastructure.pipeline.steps'],
-    version='0.5.4',
-    install_requires= requirements,
+    version='0.6.0',
+    install_requires=requirements,
     description='AutoML Infrastructure.',
-    author='DS'
+    author='Barak David'
 )
 
