@@ -1,6 +1,20 @@
 from automl_infrastructure.experiment.metrics import Metric
-from sklearn.metrics import f1_score, precision_score, recall_score, cohen_kappa_score
+from sklearn.metrics import f1_score, precision_score, recall_score, cohen_kappa_score, accuracy_score
 from collections import OrderedDict
+
+
+class Accuracy(Metric):
+    def __init__(self, is_grouped=False, weighted=True):
+        super().__init__(is_grouped, weighted)
+
+    def measure(self, y_true, classifier_prediction):
+        if self._is_grouped:
+            if self._weighted:
+                raise Exception('Accuracy metric may not be weighted: weighted should be False.')
+            else:
+                return accuracy_score(y_true, classifier_prediction.classes_pred)
+        else:
+            raise Exception('Accuracy metric must be grouped: is_grouped should be True.')
 
 
 class F1Score(Metric):
@@ -104,6 +118,7 @@ class MetricFactory(object):
 class ObjectiveFactory(object):
 
     standard_objectives = {
+        'accuracy': Accuracy(is_grouped=True, weighted=False),
         'f1_score': F1Score(is_grouped=True, weighted=False),
         'weighted_f1_score': F1Score(is_grouped=True, weighted=True),
         'precision': Precision(is_grouped=True, weighted=False),
