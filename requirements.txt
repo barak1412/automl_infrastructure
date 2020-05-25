@@ -4,3 +4,4 @@ optuna
 python-bidi
 dill
 numpy
+lime
