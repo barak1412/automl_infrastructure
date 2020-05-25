@@ -19,7 +19,7 @@ class GraphDomainMapper(DomainMapper):
         # sort neighbors in lexicographical order
         self._neighbors_lst = sorted(neighbors_lst)
 
-    def map_exp_ids(self, exp):
+    def map_exp_ids(self, exp, **kwargs):
         """Maps indices to nodes names.
         Args:
             exp: list of tuples [(idx, weight), (idx,weight)]
