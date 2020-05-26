@@ -37,7 +37,7 @@ class LimeGraphExplainer(object):
 
     def __init__(self,
                  graph,
-                 embedding_df,
+                 features_df,
                  node_col,
                  embedding_col,
                  classes,
@@ -58,11 +58,14 @@ class LimeGraphExplainer(object):
                               random_state=self._random_state)
 
         self._graph = graph
+        self._features_df = features_df
         self._classes = classes
+        self._node_col = node_col
         self._embedding_col = embedding_col
         self._feature_selection = feature_selection
         self._nodes_embedding_dict = dict([(node, embedding) for node, embedding in
-                                           zip(embedding_df[node_col], embedding_df[embedding_col])])
+                                           zip(features_df[node_col], features_df[embedding_col])])
+        self._non_embedding_cols = [c for c in features_df.columns if c not in (node_col, embedding_col)]
 
     def explain_instance(self,
                          node_name,
@@ -108,6 +111,8 @@ class LimeGraphExplainer(object):
                                distance_metric='cosine'):
         node_neighbors = sorted([n for n in self._graph.neighbors(node_name)])
         neighbors_count = len(node_neighbors)
+        node_non_embedding_features = \
+            self._features_df[self._features_df[self._node_col] == node_name][self._non_embedding_cols].values.tolist()[0]
 
         def distance_fn(x):
             return sklearn.metrics.pairwise.pairwise_distances(
@@ -120,10 +125,14 @@ class LimeGraphExplainer(object):
                 remaining_neighbors = [node_neighbors[j] for j in range(neighbors_count) if instances_data[i][j] == 1]
 
                 # calculate avg embedding
-                instances_embedding.append([self._calculate_instance_embedding(remaining_neighbors)])
-            instances_embedding_df = pd.DataFrame(instances_embedding, columns=[self._embedding_col])
-
-            return model.predict_proba(instances_embedding_df[[self._embedding_col]])
+                instances_embedding.append([self._calculate_instance_embedding(remaining_neighbors)] +
+                                           node_non_embedding_features)
+            instances_embedding_df = pd.DataFrame(instances_embedding, columns=[self._embedding_col] +
+                                           self._non_embedding_cols)
+            
+            # predict with rearranged columns order
+            ordered_cols = [c for c in self._features_df.columns if c != self._node_col]
+            return model.predict_proba(instances_embedding_df[ordered_cols])
 
         samples = self._random_state.randint(1, neighbors_count + 1, num_samples - 1)
         data = np.ones((num_samples, neighbors_count))
