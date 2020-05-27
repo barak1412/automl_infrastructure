@@ -129,7 +129,7 @@ class LimeGraphExplainer(object):
                                            node_non_embedding_features)
             instances_embedding_df = pd.DataFrame(instances_embedding, columns=[self._embedding_col] +
                                            self._non_embedding_cols)
-            
+
             # predict with rearranged columns order
             ordered_cols = [c for c in self._features_df.columns if c != self._node_col]
             return model.predict_proba(instances_embedding_df[ordered_cols])
