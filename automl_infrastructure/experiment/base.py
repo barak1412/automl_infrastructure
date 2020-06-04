@@ -492,6 +492,14 @@ class Experiment(object):
         del self._visualizations[name]
 
     def print_report(self, print_func=print):
+        """
+        Print a full report of the experiment, including:
+            - experiment's name.
+            - experiment's start and end time.
+            - params used (e.g. number of folds in the cross-validation process).
+            - observations and visualizations for every model, sorted by models performances.
+        :param print_func: function that prints a dataframe (e.g. 'display' in Jupyter Notebook).
+        """
         print("Experiment's name: {}.".format(self._name))
         time_format = '%H:%M:%S - %d/%m/%y'
         print('Start time: {}.'.format(strftime(time_format, self._start_time)))
