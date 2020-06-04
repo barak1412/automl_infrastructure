@@ -17,10 +17,56 @@ from automl_infrastructure.utils import random_str
 
 
 class Experiment(object):
+    """The Experiment class represents cross-validation training and testing process on a given set of models
+       With hyper-parameters optimization support (optional) built in, and predefined/custom metrics for observation.
+       In the end of the process, you may watch a report that among other things includes:
+            - the best model together with its parameters.
+            - metrics (observations) summary on the divided training and validation sets.
+            - visualizations (e.g. confusion matrix) summary on the divided training and validation sets.
+        """
 
     def __init__(self, name, x, y, models, hyper_parameters={}, observations={}, visualizations={},
-                 objective=None, objective_name=None, maximize=True,
+                 objective='accuracy', objective_name=None, maximize=True,
                  n_folds=3, n_repetitions=5, additional_training_data_x=None, additional_training_data_y=None):
+        """
+            Args:
+                x (pandas.DataFrame): dataframe that represents the features (every column is a feature).
+                        Note that the column type may be also a vector (list or numpy array).
+                y (pandas.Series or list): labels.
+                models (list of Classifier): list of classifiers to be examined.
+                hyper_parameters (dict of {str: list of Parameter}, optional): dictionary that contains for each
+                        model its, list of parameters to optimize.
+                        Note that for complex models the consists of sub-models, every sub-model may have its own list
+                        parameters under the father model hierarchy - for instance:
+                         {
+                            'parent_model:
+                            {sub_model1: [RangedParameter(..), ..],
+                            {sub_model2: [RangedParameter(..), ..]}
+                         }.
+                observations (dict of {str: Observation}, optional): dictionary of observation name and its observation
+                        object that defines some aggregation upon metric (e.g. Std(metric='precision')).
+                        Note that the observation will be calculated on every class in the labels, and will be
+                        shown in the final report by its name.
+                visualizations (dict of {str: Visualization}, optional): dictionary of visualization name and its
+                        visualization object that defines some visualization that will be shown in the final report
+                         by its name (e.g. ConfusionMatrix()).
+                objective (str or callable, optional): if hyper_parameters is demanded by the user, the optimization
+                        process will try to maximize or minimize the given objective.
+                        If no objective supplied, 'accuracy' will be the default.
+                objective_name (str, optional): name of the objective that will be shown in the final report.
+                        If no objective_name supplied, the name will be the same as objective param.
+                maximize (bool, optional): weather to maximize or minimize the objective during the
+                        hyper-parameters optimization process.
+                n_folds (int, optional): number of folds to use in the repeated k-fold cross-validation splitting.
+                n_repetitions (int, optional): number of repeats to use in the
+                        repeated k-fold cross-validation splitting.
+                additional_training_data_x (pandas.DataFrame, optional): additional training data that won't
+                        be divided in the cross-validation process, but will be added to the k-1 training folds on
+                        all iterations.
+                additional_training_data_y (pandas.Series or list): labels of the additional_training_data_x.
+
+                """
+
         self._name = name
         self._x = x
         self._y = y
@@ -73,6 +119,8 @@ class Experiment(object):
 
     @property
     def best_model(self):
+        """ returns the best model that was found during the experiment, with its best hyper-params"""
+
         best_model = None
         for model in self._models:
             if model.name == self._best_model_name:
@@ -81,6 +129,12 @@ class Experiment(object):
         return best_model
 
     def objective_score(self, model_name, group='test'):
+        """
+        :param model_name: the name of the model.
+        :param group: 'train' or 'test'.
+        :return: the objective score of the given model, on the given group - 'train' or 'test'.
+        """
+
         if group == 'train':
             best_scores = self._models_train_best_scores
         elif group == 'test':
@@ -97,6 +151,11 @@ class Experiment(object):
         return self._end_time
 
     def _parse_objective(self, objective):
+        """
+        :param objective: name of objective or callable.
+                        Note that if callable is supplied, objective_name must also be supplied for the final report.
+        :return: callable that receives true labels and classifier prediction, and returns scalar scoring.
+        """
         if callable(objective):
             if self._objective_name is None:
                 raise Exception('You must specified objective_name for callable objective function.')
@@ -111,6 +170,24 @@ class Experiment(object):
 
     @staticmethod
     def _build_hyper_params_translation(model_name, hyper_params):
+        """
+        The function shallows high-hierarchy dictionary of hyper-params, including renaming to avoid collisions.
+        For example, imagine we have model named 'blending', with two sub-models:
+            -input: 'blending', { 'blending':{ 'sub_lr1': [ListParameter('C', options=[0.1, 0.5])],
+                                   'sub_lr2': [ListParameter('C', options=[0.1, 0.5])]}}
+            -output: ({'C_03043': 'C', 'C_57731': 'C'},
+                     {'C_03043': <automl_infrastructure.experiment.params.ListParameter at 0x153643f5e48>,
+                      'C_57731': <automl_infrastructure.experiment.params.ListParameter at 0x153639fb6c8>},
+                     {'sub_lr1': [<automl_infrastructure.experiment.params.ListParameter at 0x153643f5e48>],
+                      'sub_lr2': [<automl_infrastructure.experiment.params.ListParameter at 0x153639fb6c8>]})
+
+        :param model_name: name of a model.
+        :param hyper_params: dictionary of all hyper-params, by their model name.
+        :return: tuple of:
+                    - mapping of new to old hyper-params names.
+                    - mapping from new hyper-params to their new Parameter objects.
+                    - mapping rom all sub-models to their new Parameter objects.
+        """
         model_hyper_params = hyper_params[model_name]
         translation_result = {}
         new_params_flat = {}
