@@ -214,6 +214,14 @@ class Experiment(object):
 
     @staticmethod
     def _translate_best_params(new_hyper_parameters, translation, best_params):
+        """
+        The function translate from the new shallow params form, to the old form.
+        :param new_hyper_parameters: the new shallow params form as dict.
+        :param translation: mapping from new param name to old param name.
+        :param best_params: mapping from new params names to its best found value.
+        :return: best params hierarchy with the old params names and their best values.
+        """
+
         result = {}
         if not isinstance(new_hyper_parameters, dict):
             for param, value in best_params.items():
@@ -228,6 +236,17 @@ class Experiment(object):
         return result
 
     def run(self, n_trials=3, n_jobs=15):
+        """
+        This method is the core method of the Experiment class, that:
+            - run hyper-param optimization on all models (optional, if hyper-params dict was supplied).
+            - evaluate the given observations (metrics) on the models with their best params.
+            - create visualizations on the models with their best params.
+        In the process of evaluation and optimization we use the repeated k-fold validation method.
+
+        :param n_trials: number of trials during the optimization process (look at Optuna for deep understanding).
+        :param n_jobs: number of parallel workers to use during the
+                    optimization process (look at Optuna for deep understanding).
+        """
         # init starting time
         self._start_time = gmtime()
         for model in self._models:
@@ -252,6 +271,19 @@ class Experiment(object):
 
     def _optimize_model(self, model, n_jobs, n_folds, n_repeatations, n_trials, new_params_flat, new_params_hierarchy,
                         translation):
+        """
+        This function optimize given model using optuna.
+        :param model: the model to optimize.
+        :param n_jobs: number of parallel workers to use during the
+                            optimization process (look at Optuna for deep understanding).
+        :param n_folds: number of folds in the repeated k-fold validation.
+        :param n_repeatations: number of repeats in the repeated k-fold validation.
+        :param n_trials: number of trials during the optimization process (look at Optuna for deep understanding).
+        :param new_params_flat: the new shallow params form as dict.
+        :param new_params_hierarchy: params hierarchy.
+        :param translation: mapping from new param name to old param name.
+        :return: the best params found by optuna.
+        """
 
         def optuna_objective(trial):
             # set params of model
