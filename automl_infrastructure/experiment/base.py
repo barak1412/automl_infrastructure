@@ -438,6 +438,15 @@ class Experiment(object):
 
     def _generate_model_visualizations(self, model_name, train_y_true_lst, train_classifier_predictions_lst,
                                        test_y_true_lst, test_classifier_predictions_lst):
+        """
+        Generate visualizations for specific model, given list of training and testing groups with their labels
+        and predictions.
+        :param model_name: name of model to visualize.
+        :param train_y_true_lst: group of training sets.
+        :param train_classifier_predictions_lst: group of predictions on the given training sets.
+        :param test_y_true_lst: group of test sets.
+        :param test_classifier_predictions_lst: group of predictions on the given test sets.
+        """
         self._models_train_visualizations[model_name] = {}
         self._models_test_visualizations[model_name] = {}
         for name, visualization in self._visualizations.items():
