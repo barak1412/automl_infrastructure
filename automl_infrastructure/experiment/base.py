@@ -327,6 +327,9 @@ class Experiment(object):
         return study.best_params
 
     def refresh(self):
+        """
+        The method regenerate observations (metrics) and visualizations for all models.
+        """
         current_best_score = None
         for model in self._models:
             best_params = self._models_best_params[model.name]
@@ -345,6 +348,13 @@ class Experiment(object):
                 current_best_score = best_score
 
     def _generate_model_results(self, model, n_folds, n_repetitions):
+        """
+        Same as refresh method, for a specified model.
+        :param model: Classifier to evaluate.
+        :param n_folds: number of folds in the repeated k-fold validation.
+        :param n_repetitions: number of repeats in the repeated k-fold validation.
+        """
+
         test_y_true_lst = []
         test_classifier_predictions_lst = []
         train_y_true_lst = []
@@ -395,6 +405,16 @@ class Experiment(object):
 
     def _generate_model_observations(self, model_name, train_y_true_lst, train_classifier_predictions_lst,
                                      test_y_true_lst, test_classifier_predictions_lst):
+        """
+        Generate observations of specific model, given list of training and testing groups with their labels
+        and predictions.
+        :param model_name: name of model to evaluate.
+        :param train_y_true_lst: group of training sets.
+        :param train_classifier_predictions_lst: group of predictions on the given training sets.
+        :param test_y_true_lst: group of test sets.
+        :param test_classifier_predictions_lst: group of predictions on the given test sets.
+        """
+
         # generate observations and merge to one dataframe
         test_observations_dataframes = []
         train_observations_dataframes = []
