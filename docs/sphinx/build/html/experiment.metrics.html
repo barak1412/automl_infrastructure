@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>experiment.metrics package &#8212; AutoML Infrastructure 0.6.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="experiment.observations package" href="experiment.observations.html" />
+    <link rel="prev" title="experiment package" href="experiment.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="experiment-metrics-package">
+<h1>experiment.metrics package<a class="headerlink" href="#experiment-metrics-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-experiment.metrics.base">
+<span id="experiment-metrics-base-module"></span><h2>experiment.metrics.base module<a class="headerlink" href="#module-experiment.metrics.base" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="experiment.metrics.base.Metric">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.metrics.base.</code><code class="sig-name descname">Metric</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">is_grouped</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">weighted</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.base.Metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<dl class="py method">
+<dt id="experiment.metrics.base.Metric.measure">
+<em class="property">abstract </em><code class="sig-name descname">measure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true</span></em>, <em class="sig-param"><span class="n">classifier_prediction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.base.Metric.measure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="experiment.metrics.base.SimpleMetric">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.metrics.base.</code><code class="sig-name descname">SimpleMetric</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">is_grouped</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">weighted</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.base.SimpleMetric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#experiment.metrics.base.Metric" title="experiment.metrics.base.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.metrics.base.Metric</span></code></a></p>
+<dl class="py method">
+<dt id="experiment.metrics.base.SimpleMetric.measure">
+<code class="sig-name descname">measure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true</span></em>, <em class="sig-param"><span class="n">classifier_prediction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.base.SimpleMetric.measure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="experiment.metrics.base.SimpleMetric.measure_lst">
+<em class="property">abstract </em><code class="sig-name descname">measure_lst</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true</span></em>, <em class="sig-param"><span class="n">classifier_prediction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.base.SimpleMetric.measure_lst" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-experiment.metrics.max_recall_at_precision">
+<span id="experiment-metrics-max-recall-at-precision-module"></span><h2>experiment.metrics.max_recall_at_precision module<a class="headerlink" href="#module-experiment.metrics.max_recall_at_precision" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="experiment.metrics.max_recall_at_precision.MaxRecallAtPrecision">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.metrics.max_recall_at_precision.</code><code class="sig-name descname">MaxRecallAtPrecision</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">precision</span></em>, <em class="sig-param"><span class="n">is_grouped</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">weighted</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.max_recall_at_precision.MaxRecallAtPrecision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.metrics.base.SimpleMetric</span></code></p>
+<dl class="py method">
+<dt id="experiment.metrics.max_recall_at_precision.MaxRecallAtPrecision.measure_lst">
+<code class="sig-name descname">measure_lst</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true</span></em>, <em class="sig-param"><span class="n">classifier_prediction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.max_recall_at_precision.MaxRecallAtPrecision.measure_lst" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-experiment.metrics.standard_metrics">
+<span id="experiment-metrics-standard-metrics-module"></span><h2>experiment.metrics.standard_metrics module<a class="headerlink" href="#module-experiment.metrics.standard_metrics" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="experiment.metrics.standard_metrics.Accuracy">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.metrics.standard_metrics.</code><code class="sig-name descname">Accuracy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">is_grouped</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">weighted</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.standard_metrics.Accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.metrics.base.Metric</span></code></p>
+<dl class="py method">
+<dt id="experiment.metrics.standard_metrics.Accuracy.measure">
+<code class="sig-name descname">measure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true</span></em>, <em class="sig-param"><span class="n">classifier_prediction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.standard_metrics.Accuracy.measure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="experiment.metrics.standard_metrics.CohenKappa">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.metrics.standard_metrics.</code><code class="sig-name descname">CohenKappa</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">is_grouped</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">weighted</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">linear</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.standard_metrics.CohenKappa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.metrics.base.Metric</span></code></p>
+<dl class="py method">
+<dt id="experiment.metrics.standard_metrics.CohenKappa.measure">
+<code class="sig-name descname">measure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true</span></em>, <em class="sig-param"><span class="n">classifier_prediction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.standard_metrics.CohenKappa.measure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="experiment.metrics.standard_metrics.F1Score">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.metrics.standard_metrics.</code><code class="sig-name descname">F1Score</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">is_grouped</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">weighted</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.standard_metrics.F1Score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.metrics.base.Metric</span></code></p>
+<dl class="py method">
+<dt id="experiment.metrics.standard_metrics.F1Score.measure">
+<code class="sig-name descname">measure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true</span></em>, <em class="sig-param"><span class="n">classifier_prediction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.standard_metrics.F1Score.measure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="experiment.metrics.standard_metrics.MetricFactory">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.metrics.standard_metrics.</code><code class="sig-name descname">MetricFactory</code><a class="headerlink" href="#experiment.metrics.standard_metrics.MetricFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="experiment.metrics.standard_metrics.MetricFactory.create">
+<em class="property">static </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.standard_metrics.MetricFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="experiment.metrics.standard_metrics.MetricFactory.standard_metrics">
+<code class="sig-name descname">standard_metrics</code><em class="property"> = {'f1_score': &lt;experiment.metrics.standard_metrics.F1Score object&gt;, 'precision': &lt;experiment.metrics.standard_metrics.Precision object&gt;, 'recall': &lt;experiment.metrics.standard_metrics.Recall object&gt;, 'support': &lt;experiment.metrics.standard_metrics.Support object&gt;}</em><a class="headerlink" href="#experiment.metrics.standard_metrics.MetricFactory.standard_metrics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="experiment.metrics.standard_metrics.ObjectiveFactory">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.metrics.standard_metrics.</code><code class="sig-name descname">ObjectiveFactory</code><a class="headerlink" href="#experiment.metrics.standard_metrics.ObjectiveFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="experiment.metrics.standard_metrics.ObjectiveFactory.create">
+<em class="property">static </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.standard_metrics.ObjectiveFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="experiment.metrics.standard_metrics.ObjectiveFactory.standard_objectives">
+<code class="sig-name descname">standard_objectives</code><em class="property"> = {'accuracy': &lt;experiment.metrics.standard_metrics.Accuracy object&gt;, 'cohen_kappa': &lt;experiment.metrics.standard_metrics.CohenKappa object&gt;, 'f1_score': &lt;experiment.metrics.standard_metrics.F1Score object&gt;, 'linear_cohen_kappa': &lt;experiment.metrics.standard_metrics.CohenKappa object&gt;, 'precision': &lt;experiment.metrics.standard_metrics.Precision object&gt;, 'quadratic_cohen_kappa': &lt;experiment.metrics.standard_metrics.CohenKappa object&gt;, 'recall': &lt;experiment.metrics.standard_metrics.Recall object&gt;, 'weighted_f1_score': &lt;experiment.metrics.standard_metrics.F1Score object&gt;, 'weighted_precision': &lt;experiment.metrics.standard_metrics.Precision object&gt;, 'weighted_recall': &lt;experiment.metrics.standard_metrics.Recall object&gt;}</em><a class="headerlink" href="#experiment.metrics.standard_metrics.ObjectiveFactory.standard_objectives" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="experiment.metrics.standard_metrics.Precision">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.metrics.standard_metrics.</code><code class="sig-name descname">Precision</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">is_grouped</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">weighted</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.standard_metrics.Precision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.metrics.base.Metric</span></code></p>
+<dl class="py method">
+<dt id="experiment.metrics.standard_metrics.Precision.measure">
+<code class="sig-name descname">measure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true</span></em>, <em class="sig-param"><span class="n">classifier_prediction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.standard_metrics.Precision.measure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="experiment.metrics.standard_metrics.Recall">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.metrics.standard_metrics.</code><code class="sig-name descname">Recall</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">is_grouped</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">weighted</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.standard_metrics.Recall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.metrics.base.Metric</span></code></p>
+<dl class="py method">
+<dt id="experiment.metrics.standard_metrics.Recall.measure">
+<code class="sig-name descname">measure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true</span></em>, <em class="sig-param"><span class="n">classifier_prediction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.standard_metrics.Recall.measure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="experiment.metrics.standard_metrics.Support">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.metrics.standard_metrics.</code><code class="sig-name descname">Support</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">is_grouped</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">weighted</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.standard_metrics.Support" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.metrics.base.Metric</span></code></p>
+<dl class="py method">
+<dt id="experiment.metrics.standard_metrics.Support.measure">
+<code class="sig-name descname">measure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true</span></em>, <em class="sig-param"><span class="n">classifier_prediction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.standard_metrics.Support.measure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-experiment.metrics.threshold_min_precision">
+<span id="experiment-metrics-threshold-min-precision-module"></span><h2>experiment.metrics.threshold_min_precision module<a class="headerlink" href="#module-experiment.metrics.threshold_min_precision" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="experiment.metrics.threshold_min_precision.ThresholdMinPrecision">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.metrics.threshold_min_precision.</code><code class="sig-name descname">ThresholdMinPrecision</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">precision</span></em>, <em class="sig-param"><span class="n">is_grouped</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">weighted</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.threshold_min_precision.ThresholdMinPrecision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.metrics.base.SimpleMetric</span></code></p>
+<dl class="py method">
+<dt id="experiment.metrics.threshold_min_precision.ThresholdMinPrecision.measure_lst">
+<code class="sig-name descname">measure_lst</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true</span></em>, <em class="sig-param"><span class="n">classifier_prediction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.threshold_min_precision.ThresholdMinPrecision.measure_lst" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-experiment.metrics.utils">
+<span id="experiment-metrics-utils-module"></span><h2>experiment.metrics.utils module<a class="headerlink" href="#module-experiment.metrics.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="experiment.metrics.utils.parse_metric">
+<code class="sig-prename descclassname">experiment.metrics.utils.</code><code class="sig-name descname">parse_metric</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metric</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.utils.parse_metric" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="experiment.metrics.utils.parse_objective">
+<code class="sig-prename descclassname">experiment.metrics.utils.</code><code class="sig-name descname">parse_objective</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">objective</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.metrics.utils.parse_objective" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-experiment.metrics">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-experiment.metrics" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">AutoML Infrastructure</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">experiment</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="experiment.html">experiment package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">experiment</a><ul>
+  <li><a href="experiment.html">experiment package</a><ul>
+      <li>Previous: <a href="experiment.html" title="previous chapter">experiment package</a></li>
+      <li>Next: <a href="experiment.observations.html" title="next chapter">experiment.observations package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Barak David.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/experiment.metrics.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,54 @@
+experiment.metrics package
+==========================
+
+Submodules
+----------
+
+experiment.metrics.base module
+------------------------------
+
+.. automodule:: experiment.metrics.base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+experiment.metrics.max\_recall\_at\_precision module
+----------------------------------------------------
+
+.. automodule:: experiment.metrics.max_recall_at_precision
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+experiment.metrics.standard\_metrics module
+-------------------------------------------
+
+.. automodule:: experiment.metrics.standard_metrics
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+experiment.metrics.threshold\_min\_precision module
+---------------------------------------------------
+
+.. automodule:: experiment.metrics.threshold_min_precision
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+experiment.metrics.utils module
+-------------------------------
+
+.. automodule:: experiment.metrics.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: experiment.metrics
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,30 @@
+experiment.observations package
+===============================
+
+Submodules
+----------
+
+experiment.observations.base module
+-----------------------------------
+
+.. automodule:: experiment.observations.base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+experiment.observations.standard\_observations module
+-----------------------------------------------------
+
+.. automodule:: experiment.observations.standard_observations
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: experiment.observations
+   :members:
+   :undoc-members:
+   :show-inheritance:

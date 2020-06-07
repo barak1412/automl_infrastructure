@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>automl_infrastructure.pipeline.steps package &#8212; AutoML Infrastructure 0.6.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="automl_infrastructure.utils package" href="automl_infrastructure.utils.html" />
+    <link rel="prev" title="automl_infrastructure.pipeline package" href="automl_infrastructure.pipeline.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="automl_infrastructure.utils.html" title="automl_infrastructure.utils package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="automl_infrastructure.pipeline.html" title="automl_infrastructure.pipeline package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">AutoML Infrastructure 0.6.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >automl_infrastructure</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="automl_infrastructure.html" >automl_infrastructure package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="automl_infrastructure.pipeline.html" accesskey="U">automl_infrastructure.pipeline package</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="automl-infrastructure-pipeline-steps-package">
+<h1>automl_infrastructure.pipeline.steps package<a class="headerlink" href="#automl-infrastructure-pipeline-steps-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-automl_infrastructure.pipeline.steps.base">
+<span id="automl-infrastructure-pipeline-steps-base-module"></span><h2>automl_infrastructure.pipeline.steps.base module<a class="headerlink" href="#module-automl_infrastructure.pipeline.steps.base" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="automl_infrastructure.pipeline.steps.base.Step">
+<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.pipeline.steps.base.</code><code class="sig-name descname">Step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">transformer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.steps.base.Step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="automl_infrastructure.pipeline.steps.base.Step.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#automl_infrastructure.pipeline.steps.base.Step.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.pipeline.steps.base.Step.transformer">
+<em class="property">property </em><code class="sig-name descname">transformer</code><a class="headerlink" href="#automl_infrastructure.pipeline.steps.base.Step.transformer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.pipeline.steps.base.Step.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.steps.base.Step.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.pipeline.steps.base.Step.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.steps.base.Step.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.pipeline.steps.base.Step.set_params">
+<code class="sig-name descname">set_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.steps.base.Step.set_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.pipeline.steps.base.Step.get_params">
+<code class="sig-name descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.steps.base.Step.get_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="automl_infrastructure.pipeline.steps.base.GenericStep">
+<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.pipeline.steps.base.</code><code class="sig-name descname">GenericStep</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">transformer_class</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.steps.base.GenericStep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="automl_infrastructure.pipeline.steps.base.GenericStep.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.steps.base.GenericStep.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.pipeline.steps.base.GenericStep.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.steps.base.GenericStep.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.pipeline.steps.base.GenericStep.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#automl_infrastructure.pipeline.steps.base.GenericStep.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.pipeline.steps.base.GenericStep.transformer">
+<em class="property">property </em><code class="sig-name descname">transformer</code><a class="headerlink" href="#automl_infrastructure.pipeline.steps.base.GenericStep.transformer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.pipeline.steps.base.GenericStep.set_params">
+<code class="sig-name descname">set_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transformer_class</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.steps.base.GenericStep.set_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-automl_infrastructure.pipeline.steps">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-automl_infrastructure.pipeline.steps" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">automl_infrastructure.pipeline.steps package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-automl_infrastructure.pipeline.steps.base">automl_infrastructure.pipeline.steps.base module</a></li>
+<li><a class="reference internal" href="#module-automl_infrastructure.pipeline.steps">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="automl_infrastructure.pipeline.html"
+                        title="previous chapter">automl_infrastructure.pipeline package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="automl_infrastructure.utils.html"
+                        title="next chapter">automl_infrastructure.utils package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/automl_infrastructure.pipeline.steps.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="automl_infrastructure.utils.html" title="automl_infrastructure.utils package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="automl_infrastructure.pipeline.html" title="automl_infrastructure.pipeline package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">AutoML Infrastructure 0.6.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >automl_infrastructure</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="automl_infrastructure.html" >automl_infrastructure package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="automl_infrastructure.pipeline.html" >automl_infrastructure.pipeline package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Barak David.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.4.
+    </div>
+  </body>
+</html>

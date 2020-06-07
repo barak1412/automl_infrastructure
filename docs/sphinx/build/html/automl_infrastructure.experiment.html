@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>automl_infrastructure.experiment package &#8212; AutoML Infrastructure 0.6.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="automl_infrastructure.experiment.metrics package" href="automl_infrastructure.experiment.metrics.html" />
+    <link rel="prev" title="automl_infrastructure.classifiers.adapters package" href="automl_infrastructure.classifiers.adapters.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="automl_infrastructure.experiment.metrics.html" title="automl_infrastructure.experiment.metrics package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="automl_infrastructure.classifiers.adapters.html" title="automl_infrastructure.classifiers.adapters package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">AutoML Infrastructure 0.6.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >automl_infrastructure</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="automl_infrastructure.html" accesskey="U">automl_infrastructure package</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="automl-infrastructure-experiment-package">
+<h1>automl_infrastructure.experiment package<a class="headerlink" href="#automl-infrastructure-experiment-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="automl_infrastructure.experiment.metrics.html">automl_infrastructure.experiment.metrics package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automl_infrastructure.experiment.observations.html">automl_infrastructure.experiment.observations package</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-automl_infrastructure.experiment.base">
+<span id="automl-infrastructure-experiment-base-module"></span><h2>automl_infrastructure.experiment.base module<a class="headerlink" href="#module-automl_infrastructure.experiment.base" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="automl_infrastructure.experiment.base.Experiment">
+<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.base.</code><code class="sig-name descname">Experiment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">models</span></em>, <em class="sig-param"><span class="n">hyper_parameters</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">observations</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">visualizations</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">objective</span><span class="o">=</span><span class="default_value">'accuracy'</span></em>, <em class="sig-param"><span class="n">objective_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">maximize</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">n_folds</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">n_repetitions</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">additional_training_data_x</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">additional_training_data_y</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The Experiment class represents cross-validation training and testing process on a given set of models
+with hyper-parameters optimization support (optional) built in, and predefined/custom metrics for observation.</p>
+<dl class="simple">
+<dt>In the end of the process, you may watch a report that among other things includes:</dt><dd><ul class="simple">
+<li><p>the best model together with its parameters.</p></li>
+<li><p>metrics (observations) summary on the divided training and validation sets.</p></li>
+<li><p>visualizations (e.g. confusion matrix) summary on the divided training and validation sets.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – the name of the experiment.</p></li>
+<li><p><strong>x</strong> (<em>pandas.DataFrame.</em>) – dataframe that represents the features (every column is a feature).
+Note that the column type may be also a vector (list or numpy array).</p></li>
+<li><p><strong>y</strong> (<em>pandas.Series</em><em> or </em><em>list</em>) – labels.</p></li>
+<li><p><strong>models</strong> (list of <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.Classifier" title="automl_infrastructure.classifiers.base.Classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.Classifier</span></code></a>) – list of classifiers to be examined.</p></li>
+<li><p><strong>hyper_parameters</strong> (dict of {str: list of <a class="reference internal" href="#automl_infrastructure.experiment.params.Parameter" title="automl_infrastructure.experiment.params.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.params.Parameter</span></code></a>} (, optional)) – <p>dictionary that contains for each model its, list of parameters to optimize.</p>
+<dl>
+<dt>Note that for complex models the consists of sub-models, every sub-model may have its own list</dt><dd><dl>
+<dt>parameters under the father model hierarchy - for instance:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>‘parent_model:
+{sub_model1: [RangedParameter(..), ..],
+{sub_model2: [RangedParameter(..), ..]}</p>
+</dd>
+</dl>
+<p>}.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>observations</strong> (dict of {str: <a class="reference internal" href="automl_infrastructure.experiment.observations.html#automl_infrastructure.experiment.observations.base.Observation" title="automl_infrastructure.experiment.observations.base.Observation"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.observations.base.Observation</span></code></a>} (, optional)) – dictionary of observation name and its observation
+object that defines some aggregation upon metric (e.g. Std(metric=’precision’)).
+Note that the observation will be calculated on every class in the labels, and will be
+shown in the final report by its name.</p></li>
+<li><p><strong>visualizations</strong> (dict of {str: <a class="reference internal" href="automl_infrastructure.visualization.html#automl_infrastructure.visualization.base.Visualization" title="automl_infrastructure.visualization.base.Visualization"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.visualization.base.Visualization</span></code></a>} (, optional)) – dictionary of visualization name and its visualization object that defines some visualization that will be shown in the final report
+by its name (e.g. ConfusionMatrix()).</p></li>
+<li><p><strong>objective</strong> (<em>str</em><em> or </em><em>callable</em><em> (</em><em>, </em><em>optional</em><em>)</em>) – if hyper_parameters was supplied by the user, the optimization process will try to maximize or minimize the given objective.
+If no objective supplied, ‘accuracy’ will be the default.</p></li>
+<li><p><strong>objective_name</strong> (<em>str</em><em> (</em><em>, </em><em>optional</em><em>)</em>) – name of the objective that will be shown in the final report.</p></li>
+<li><p><strong>maximize</strong> (<em>bool</em><em> (</em><em>, </em><em>optional</em><em>)</em>) – weather to maximize or minimize the objective during the hyper-parameters optimization process.</p></li>
+<li><p><strong>n_folds</strong> (<em>int</em><em> (</em><em>, </em><em>optional</em><em>)</em>) – number of folds to use in the repeated k-fold cross-validation splitting.</p></li>
+<li><p><strong>n_repetitions</strong> (<em>int</em><em> (</em><em>, </em><em>optional</em><em>)</em>) – number of repeats to use in the repeated k-fold cross-validation splitting.</p></li>
+<li><p><strong>additional_training_data_x</strong> (<em>pandas.DataFrame</em><em> (</em><em>, </em><em>optional</em><em>)</em>) – additional training data that won’t
+be divided in the cross-validation process, but will be added to the k-1 training folds on
+all iterations.</p></li>
+<li><p><strong>additional_training_data_y</strong> (<em>pandas.Series</em><em> or </em><em>list</em><em> (</em><em>, </em><em>optional</em><em>)</em>) – labels of the additional_training_data_x.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.X">
+<em class="property">property </em><code class="sig-name descname">X</code><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.X" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.y">
+<em class="property">property </em><code class="sig-name descname">y</code><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.additional_training_data_X">
+<em class="property">property </em><code class="sig-name descname">additional_training_data_X</code><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.additional_training_data_X" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.additional_training_data_y">
+<em class="property">property </em><code class="sig-name descname">additional_training_data_y</code><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.additional_training_data_y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.objective_name">
+<em class="property">property </em><code class="sig-name descname">objective_name</code><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.objective_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.best_model">
+<em class="property">property </em><code class="sig-name descname">best_model</code><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.best_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the best model that was found during the experiment, with its best hyper-params</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.end_time">
+<em class="property">property </em><code class="sig-name descname">end_time</code><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.end_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.objective_score">
+<code class="sig-name descname">objective_score</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_name</span></em>, <em class="sig-param"><span class="n">group</span><span class="o">=</span><span class="default_value">'test'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.objective_score" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_name</strong> – the name of the model.</p></li>
+<li><p><strong>group</strong> – ‘train’ or ‘test’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the objective score of the given model, on the given group - ‘train’ or ‘test’.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_trials</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">n_jobs</span><span class="o">=</span><span class="default_value">15</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.run" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>This method is the core method of the Experiment class, that:</dt><dd><ul class="simple">
+<li><p>run hyper-param optimization on all models (optional, if hyper-params dict was supplied).</p></li>
+<li><p>evaluate the given observations (metrics) on the models with their best params.</p></li>
+<li><p>create visualizations on the models with their best params.</p></li>
+</ul>
+</dd>
+</dl>
+<p>In the process of evaluation and optimization we use the repeated k-fold validation method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_trials</strong> – number of trials during the optimization process (look at Optuna for deep understanding).</p></li>
+<li><p><strong>n_jobs</strong> – number of parallel workers to use during the
+optimization process (look at Optuna for deep understanding).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.refresh">
+<code class="sig-name descname">refresh</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.refresh" title="Permalink to this definition">¶</a></dt>
+<dd><p>The method regenerate observations (metrics) and visualizations for all models.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.get_model_observations">
+<code class="sig-name descname">get_model_observations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_name</span></em>, <em class="sig-param"><span class="n">observation_type</span><span class="o">=</span><span class="default_value">'test'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.get_model_observations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.get_model_visualizations">
+<code class="sig-name descname">get_model_visualizations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_name</span></em>, <em class="sig-param"><span class="n">observation_type</span><span class="o">=</span><span class="default_value">'test'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.get_model_visualizations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.add_observation">
+<code class="sig-name descname">add_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">observation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.add_observation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.add_visualization">
+<code class="sig-name descname">add_visualization</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">visualization</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.add_visualization" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.remove_visualization">
+<code class="sig-name descname">remove_visualization</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.remove_visualization" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.print_report">
+<code class="sig-name descname">print_report</code><span class="sig-paren">(</span><em class="sig-param">print_func=&lt;built-in function print&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.print_report" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Print a full report of the experiment, including:</dt><dd><ul class="simple">
+<li><p>experiment’s name.</p></li>
+<li><p>experiment’s start and end time.</p></li>
+<li><p>params used (e.g. number of folds in the cross-validation process).</p></li>
+<li><p>observations and visualizations for every model, sorted by models performances.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>print_func</strong> – function that prints a dataframe (e.g. ‘display’ in Jupyter Notebook).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.dump">
+<code class="sig-name descname">dump</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">add_date</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.dump" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.base.Experiment.load">
+<em class="property">static </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-automl_infrastructure.experiment.params">
+<span id="automl-infrastructure-experiment-params-module"></span><h2>automl_infrastructure.experiment.params module<a class="headerlink" href="#module-automl_infrastructure.experiment.params" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="automl_infrastructure.experiment.params.ParameterSuggestor">
+<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.params.</code><code class="sig-name descname">ParameterSuggestor</code><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggestor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.ParameterSuggestor.suggest_continous_float">
+<em class="property">abstract </em><code class="sig-name descname">suggest_continous_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">log</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggestor.suggest_continous_float" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.ParameterSuggestor.suggest_discrete_float">
+<em class="property">abstract </em><code class="sig-name descname">suggest_discrete_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">step</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggestor.suggest_discrete_float" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.ParameterSuggestor.suggest_int">
+<em class="property">abstract </em><code class="sig-name descname">suggest_int</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggestor.suggest_int" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.ParameterSuggestor.suggest_list">
+<em class="property">abstract </em><code class="sig-name descname">suggest_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">options</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggestor.suggest_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggestor">
+<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.params.</code><code class="sig-name descname">OptunaParameterSuggestor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggestor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.experiment.params.ParameterSuggestor" title="automl_infrastructure.experiment.params.ParameterSuggestor"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.params.ParameterSuggestor</span></code></a></p>
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_continous_float">
+<code class="sig-name descname">suggest_continous_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">log</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_continous_float" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_discrete_float">
+<code class="sig-name descname">suggest_discrete_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">step</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_discrete_float" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_int">
+<code class="sig-name descname">suggest_int</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_int" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_list">
+<code class="sig-name descname">suggest_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">options</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="automl_infrastructure.experiment.params.Parameter">
+<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.params.</code><code class="sig-name descname">Parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.Parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.Parameter.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#automl_infrastructure.experiment.params.Parameter.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.Parameter.set_name">
+<code class="sig-name descname">set_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.Parameter.set_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.Parameter.suggest">
+<em class="property">abstract </em><code class="sig-name descname">suggest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">suggestor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.Parameter.suggest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.Parameter.copy">
+<em class="property">abstract </em><code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.Parameter.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="automl_infrastructure.experiment.params.RangedParameter">
+<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.params.</code><code class="sig-name descname">RangedParameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">lower</span></em>, <em class="sig-param"><span class="n">upper</span></em>, <em class="sig-param"><span class="n">discrete</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">step_rate</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">log</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.RangedParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.experiment.params.Parameter" title="automl_infrastructure.experiment.params.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.params.Parameter</span></code></a></p>
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.RangedParameter.suggest">
+<code class="sig-name descname">suggest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">suggestor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.RangedParameter.suggest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.RangedParameter.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.RangedParameter.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="automl_infrastructure.experiment.params.ListParameter">
+<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.params.</code><code class="sig-name descname">ListParameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">options</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ListParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.experiment.params.Parameter" title="automl_infrastructure.experiment.params.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.params.Parameter</span></code></a></p>
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.ListParameter.suggest">
+<code class="sig-name descname">suggest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">suggestor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ListParameter.suggest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.experiment.params.ListParameter.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ListParameter.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-automl_infrastructure.experiment">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-automl_infrastructure.experiment" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">automl_infrastructure.experiment package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-automl_infrastructure.experiment.base">automl_infrastructure.experiment.base module</a></li>
+<li><a class="reference internal" href="#module-automl_infrastructure.experiment.params">automl_infrastructure.experiment.params module</a></li>
+<li><a class="reference internal" href="#module-automl_infrastructure.experiment">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="automl_infrastructure.classifiers.adapters.html"
+                        title="previous chapter">automl_infrastructure.classifiers.adapters package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="automl_infrastructure.experiment.metrics.html"
+                        title="next chapter">automl_infrastructure.experiment.metrics package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/automl_infrastructure.experiment.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="automl_infrastructure.experiment.metrics.html" title="automl_infrastructure.experiment.metrics package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="automl_infrastructure.classifiers.adapters.html" title="automl_infrastructure.classifiers.adapters package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">AutoML Infrastructure 0.6.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >automl_infrastructure</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="automl_infrastructure.html" >automl_infrastructure package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Barak David.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.4.
+    </div>
+  </body>
+</html>

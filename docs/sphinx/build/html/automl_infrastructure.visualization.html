@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>automl_infrastructure.visualization package &#8212; AutoML Infrastructure 0.6.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="automl_infrastructure.utils package" href="automl_infrastructure.utils.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="automl_infrastructure.utils.html" title="automl_infrastructure.utils package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">AutoML Infrastructure 0.6.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >automl_infrastructure</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="automl_infrastructure.html" accesskey="U">automl_infrastructure package</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="automl-infrastructure-visualization-package">
+<h1>automl_infrastructure.visualization package<a class="headerlink" href="#automl-infrastructure-visualization-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-automl_infrastructure.visualization.base">
+<span id="automl-infrastructure-visualization-base-module"></span><h2>automl_infrastructure.visualization.base module<a class="headerlink" href="#module-automl_infrastructure.visualization.base" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="automl_infrastructure.visualization.base.Visualization">
+<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.visualization.base.</code><code class="sig-name descname">Visualization</code><a class="headerlink" href="#automl_infrastructure.visualization.base.Visualization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<dl class="py method">
+<dt id="automl_infrastructure.visualization.base.Visualization.fit">
+<em class="property">abstract </em><code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true_lst</span></em>, <em class="sig-param"><span class="n">classifier_prediction_lst</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.base.Visualization.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.visualization.base.Visualization.show">
+<em class="property">abstract </em><code class="sig-name descname">show</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.base.Visualization.show" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-automl_infrastructure.visualization.confusion_matrix">
+<span id="automl-infrastructure-visualization-confusion-matrix-module"></span><h2>automl_infrastructure.visualization.confusion_matrix module<a class="headerlink" href="#module-automl_infrastructure.visualization.confusion_matrix" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix">
+<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.visualization.confusion_matrix.</code><code class="sig-name descname">ConfusionMatrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sample_weight</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">order</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">normalize</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">custom_thresholds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">other_class</span><span class="o">=</span><span class="default_value">'other'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.visualization.base.Visualization" title="automl_infrastructure.visualization.base.Visualization"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.visualization.base.Visualization</span></code></a></p>
+<dl class="py method">
+<dt id="automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.to_dict">
+<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true_lst</span></em>, <em class="sig-param"><span class="n">classifier_prediction_lst</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.repredict_other_label">
+<code class="sig-name descname">repredict_other_label</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">probs_lst</span></em>, <em class="sig-param"><span class="n">classes</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.repredict_other_label" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.show">
+<code class="sig-name descname">show</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.show" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-automl_infrastructure.visualization.precision_recall_curve">
+<span id="automl-infrastructure-visualization-precision-recall-curve-module"></span><h2>automl_infrastructure.visualization.precision_recall_curve module<a class="headerlink" href="#module-automl_infrastructure.visualization.precision_recall_curve" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve">
+<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.visualization.precision_recall_curve.</code><code class="sig-name descname">PrecisionRecallCurve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">max_classes_per_figure</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">n_thresholds</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.visualization.base.Visualization" title="automl_infrastructure.visualization.base.Visualization"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.visualization.base.Visualization</span></code></a></p>
+<dl class="py method">
+<dt id="automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true_lst</span></em>, <em class="sig-param"><span class="n">classifier_prediction_lst</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.get_curve">
+<code class="sig-name descname">get_curve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">class_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.get_curve" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.classes_">
+<em class="property">property </em><code class="sig-name descname">classes_</code><a class="headerlink" href="#automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.classes_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.show">
+<code class="sig-name descname">show</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.show" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-automl_infrastructure.visualization">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-automl_infrastructure.visualization" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">automl_infrastructure.visualization package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-automl_infrastructure.visualization.base">automl_infrastructure.visualization.base module</a></li>
+<li><a class="reference internal" href="#module-automl_infrastructure.visualization.confusion_matrix">automl_infrastructure.visualization.confusion_matrix module</a></li>
+<li><a class="reference internal" href="#module-automl_infrastructure.visualization.precision_recall_curve">automl_infrastructure.visualization.precision_recall_curve module</a></li>
+<li><a class="reference internal" href="#module-automl_infrastructure.visualization">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="automl_infrastructure.utils.html"
+                        title="previous chapter">automl_infrastructure.utils package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/automl_infrastructure.visualization.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="automl_infrastructure.utils.html" title="automl_infrastructure.utils package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">AutoML Infrastructure 0.6.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >automl_infrastructure</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="automl_infrastructure.html" >automl_infrastructure package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Barak David.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.4.
+    </div>
+  </body>
+</html>

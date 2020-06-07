@@ -1,0 +1,39 @@
+experiment package
+==================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   experiment.metrics
+   experiment.observations
+
+Submodules
+----------
+
+experiment.base module
+----------------------
+
+.. automodule:: experiment.base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+experiment.params module
+------------------------
+
+.. automodule:: experiment.params
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: experiment
+   :members:
+   :undoc-members:
+   :show-inheritance:
