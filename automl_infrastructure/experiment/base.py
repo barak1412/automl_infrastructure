@@ -129,7 +129,7 @@ class Experiment(object):
     @property
     def end_time(self):
         return self._end_time
-    
+
     def objective_score(self, model_name, group='test'):
         """
         :param model_name: the name of the model.
@@ -147,7 +147,6 @@ class Experiment(object):
         if model_name not in best_scores:
             raise ('Could not find model named {}.'.format(model_name))
         return best_scores[model_name]
-
 
     def _parse_objective(self, objective):
         """
