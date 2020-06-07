@@ -2,14 +2,12 @@ import copy
 import operator
 from functools import reduce
 from time import strftime, gmtime
-
 import dill
 import numpy as np
 import optuna
 import pandas as pd
 from sklearn.model_selection import StratifiedKFold
 from sklearn.utils import shuffle
-
 from automl_infrastructure.classifiers import ClassifierPrediction
 from automl_infrastructure.experiment.metrics.standard_metrics import ObjectiveFactory
 from automl_infrastructure.experiment.params import OptunaParameterSuggestor
@@ -128,6 +126,10 @@ class Experiment(object):
         best_model.set_params(self._models_best_params[best_model.name])
         return best_model
 
+    @property
+    def end_time(self):
+        return self._end_time
+    
     def objective_score(self, model_name, group='test'):
         """
         :param model_name: the name of the model.
@@ -146,9 +148,6 @@ class Experiment(object):
             raise ('Could not find model named {}.'.format(model_name))
         return best_scores[model_name]
 
-    @property
-    def end_time(self):
-        return self._end_time
 
     def _parse_objective(self, objective):
         """
