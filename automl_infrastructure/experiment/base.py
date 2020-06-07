@@ -16,7 +16,8 @@ from automl_infrastructure.utils import random_str
 
 class Experiment(object):
     """The Experiment class represents cross-validation training and testing process on a given set of models
-       With hyper-parameters optimization support (optional) built in, and predefined/custom metrics for observation.
+       with hyper-parameters optimization support (optional) built in, and predefined/custom metrics for observation.
+
        In the end of the process, you may watch a report that among other things includes:
             - the best model together with its parameters.
             - metrics (observations) summary on the divided training and validation sets.
@@ -27,43 +28,64 @@ class Experiment(object):
                  objective='accuracy', objective_name=None, maximize=True,
                  n_folds=3, n_repetitions=5, additional_training_data_x=None, additional_training_data_y=None):
         """
-            Args:
-                x (pandas.DataFrame): dataframe that represents the features (every column is a feature).
-                        Note that the column type may be also a vector (list or numpy array).
-                y (pandas.Series or list): labels.
-                models (list of Classifier): list of classifiers to be examined.
-                hyper_parameters (dict of {str: list of Parameter}, optional): dictionary that contains for each
-                        model its, list of parameters to optimize.
-                        Note that for complex models the consists of sub-models, every sub-model may have its own list
-                        parameters under the father model hierarchy - for instance:
-                         {
-                            'parent_model:
-                            {sub_model1: [RangedParameter(..), ..],
-                            {sub_model2: [RangedParameter(..), ..]}
-                         }.
-                observations (dict of {str: Observation}, optional): dictionary of observation name and its observation
+        :param name: the name of the experiment.
+        :type name: str
+
+        :param x: dataframe that represents the features (every column is a feature).
+                Note that the column type may be also a vector (list or numpy array).
+        :type x: pandas.DataFrame.
+
+        :param y: labels.
+        :type y: pandas.Series or list
+
+        :param models: list of classifiers to be examined.
+        :type models: list of :class:`automl_infrastructure.classifiers.base.Classifier`
+
+        :param hyper_parameters: dictionary that contains for each model its, list of parameters to optimize.
+
+                Note that for complex models the consists of sub-models, every sub-model may have its own list
+                    parameters under the father model hierarchy - for instance:
+                     {
+                        'parent_model:
+                        {sub_model1: [RangedParameter(..), ..],
+                        {sub_model2: [RangedParameter(..), ..]}
+                     }.
+        :type hyper_parameters: dict of {str: list of :class:`automl_infrastructure.experiment.params.Parameter`} (, optional)
+
+        :param observations: dictionary of observation name and its observation
                         object that defines some aggregation upon metric (e.g. Std(metric='precision')).
                         Note that the observation will be calculated on every class in the labels, and will be
                         shown in the final report by its name.
-                visualizations (dict of {str: Visualization}, optional): dictionary of visualization name and its
-                        visualization object that defines some visualization that will be shown in the final report
+        :type observations: dict of {str: :class:`automl_infrastructure.experiment.observations.base.Observation`} (, optional)
+
+        :param visualizations: dictionary of visualization name and its visualization object that defines some visualization that will be shown in the final report
                          by its name (e.g. ConfusionMatrix()).
-                objective (str or callable, optional): if hyper_parameters is demanded by the user, the optimization
-                        process will try to maximize or minimize the given objective.
+        :type visualizations: dict of {str: :class:`automl_infrastructure.visualization.base.Visualization`} (, optional)
+
+        :param objective: if hyper_parameters was supplied by the user, the optimization process will try to maximize or minimize the given objective.
                         If no objective supplied, 'accuracy' will be the default.
-                objective_name (str, optional): name of the objective that will be shown in the final report.
-                        If no objective_name supplied, the name will be the same as objective param.
-                maximize (bool, optional): weather to maximize or minimize the objective during the
-                        hyper-parameters optimization process.
-                n_folds (int, optional): number of folds to use in the repeated k-fold cross-validation splitting.
-                n_repetitions (int, optional): number of repeats to use in the
-                        repeated k-fold cross-validation splitting.
-                additional_training_data_x (pandas.DataFrame, optional): additional training data that won't
+        :type objective: str or callable (, optional)
+
+        :param objective_name: name of the objective that will be shown in the final report.
+        :type objective_name: str (, optional)
+
+        :param maximize: weather to maximize or minimize the objective during the hyper-parameters optimization process.
+        :type maximize: bool (, optional)
+
+        :param n_folds: number of folds to use in the repeated k-fold cross-validation splitting.
+        :type n_folds: int (, optional)
+
+        :param n_repetitions: number of repeats to use in the repeated k-fold cross-validation splitting.
+        :type n_repetitions: int (, optional)
+
+        :param additional_training_data_x: additional training data that won't
                         be divided in the cross-validation process, but will be added to the k-1 training folds on
                         all iterations.
-                additional_training_data_y (pandas.Series or list): labels of the additional_training_data_x.
+        :type additional_training_data_x: pandas.DataFrame (, optional)
 
-                """
+        :param additional_training_data_y: labels of the additional_training_data_x.
+        :type additional_training_data_y: pandas.Series or list (, optional)
+        """
 
         self._name = name
         self._x = x
