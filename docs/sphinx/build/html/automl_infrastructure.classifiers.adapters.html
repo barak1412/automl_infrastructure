@@ -57,10 +57,13 @@
 <dt id="automl_infrastructure.classifiers.adapters.keras_classifier.KerasClassifierAdapter">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.classifiers.adapters.keras_classifier.</code><code class="sig-name descname">KerasClassifierAdapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">keras_classifier</span></em>, <em class="sig-param"><span class="n">features_cols</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.classifiers.adapters.keras_classifier.KerasClassifierAdapter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.BasicClassifier" title="automl_infrastructure.classifiers.base.BasicClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.BasicClassifier</span></code></a></p>
+<p>The KerasClassifierAdapter implements an adapter (wrapper) for keras models,
+to match the <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.Classifier" title="automl_infrastructure.classifiers.base.Classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.Classifier</span></code></a> contract.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<em>str</em>) – name of the classifier (e.g. ‘lr1).</p></li>
+<li><p><strong>keras_classifier</strong> – keras classifier to wrap.</p></li>
 <li><p><strong>features_cols</strong> (<em>list of str</em><em> ,</em><em>optional</em>) – features list that the classifier should work on, while ignoring other features.</p></li>
 </ul>
 </dd>
@@ -99,11 +102,15 @@
 <dt id="automl_infrastructure.classifiers.adapters.sklearn.SklearnClassifierAdapter">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.classifiers.adapters.sklearn.</code><code class="sig-name descname">SklearnClassifierAdapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">sklearn_model</span></em>, <em class="sig-param"><span class="n">features_cols</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">encode_labels</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.classifiers.adapters.sklearn.SklearnClassifierAdapter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.BasicClassifier" title="automl_infrastructure.classifiers.base.BasicClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.BasicClassifier</span></code></a></p>
+<p>The SklearnClassifierAdapter implements an adapter (wrapper) for sklearn classifiers,
+to match the <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.Classifier" title="automl_infrastructure.classifiers.base.Classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.Classifier</span></code></a> contract.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<em>str</em>) – name of the classifier (e.g. ‘lr1).</p></li>
+<li><p><strong>sklearn_model</strong> – sklearn classifier to wrap.</p></li>
 <li><p><strong>features_cols</strong> (<em>list of str</em><em> ,</em><em>optional</em>) – features list that the classifier should work on, while ignoring other features.</p></li>
+<li><p><strong>encode_labels</strong> (<em>bool</em><em> ,</em><em>optional</em>) – weather to encode the labels</p></li>
 </ul>
 </dd>
 </dl>
