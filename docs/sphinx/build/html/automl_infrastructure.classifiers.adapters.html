@@ -57,15 +57,38 @@
 <dt id="automl_infrastructure.classifiers.adapters.keras_classifier.KerasClassifierAdapter">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.classifiers.adapters.keras_classifier.</code><code class="sig-name descname">KerasClassifierAdapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">keras_classifier</span></em>, <em class="sig-param"><span class="n">features_cols</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.classifiers.adapters.keras_classifier.KerasClassifierAdapter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.BasicClassifier" title="automl_infrastructure.classifiers.base.BasicClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.BasicClassifier</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the classifier (e.g. ‘lr1).</p></li>
+<li><p><strong>features_cols</strong> (<em>list of str</em><em> ,</em><em>optional</em>) – features list that the classifier should work on, while ignoring other features.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="automl_infrastructure.classifiers.adapters.keras_classifier.KerasClassifierAdapter.set_params">
 <code class="sig-name descname">set_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.classifiers.adapters.keras_classifier.KerasClassifierAdapter.set_params" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Sets hyper-params of the classifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>dict of {str: Any}</em>) – dictionary of parameters value by their name (e.g. {‘C’ : 1.0}).</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.classifiers.adapters.keras_classifier.KerasClassifierAdapter.get_params">
 <code class="sig-name descname">get_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">deep</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.classifiers.adapters.keras_classifier.KerasClassifierAdapter.get_params" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Getter for the classifier hyper-params.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>deep</strong> (<em>bool</em><em> ,</em><em>optional</em>) – for complex classifiers, weather to return params of inner classifiers.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the classifier hyper-params.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -76,15 +99,38 @@
 <dt id="automl_infrastructure.classifiers.adapters.sklearn.SklearnClassifierAdapter">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.classifiers.adapters.sklearn.</code><code class="sig-name descname">SklearnClassifierAdapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">sklearn_model</span></em>, <em class="sig-param"><span class="n">features_cols</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">encode_labels</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.classifiers.adapters.sklearn.SklearnClassifierAdapter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.BasicClassifier" title="automl_infrastructure.classifiers.base.BasicClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.BasicClassifier</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the classifier (e.g. ‘lr1).</p></li>
+<li><p><strong>features_cols</strong> (<em>list of str</em><em> ,</em><em>optional</em>) – features list that the classifier should work on, while ignoring other features.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="automl_infrastructure.classifiers.adapters.sklearn.SklearnClassifierAdapter.set_params">
 <code class="sig-name descname">set_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.classifiers.adapters.sklearn.SklearnClassifierAdapter.set_params" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Sets hyper-params of the classifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>dict of {str: Any}</em>) – dictionary of parameters value by their name (e.g. {‘C’ : 1.0}).</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.classifiers.adapters.sklearn.SklearnClassifierAdapter.get_params">
 <code class="sig-name descname">get_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">deep</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.classifiers.adapters.sklearn.SklearnClassifierAdapter.get_params" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Getter for the classifier hyper-params.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>deep</strong> (<em>bool</em><em> ,</em><em>optional</em>) – for complex classifiers, weather to return params of inner classifiers.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the classifier hyper-params.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

@@ -64,6 +64,14 @@
 <dt id="automl_infrastructure.pipeline.base.Pipeline">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.pipeline.base.</code><code class="sig-name descname">Pipeline</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">steps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.base.Pipeline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.Classifier" title="automl_infrastructure.classifiers.base.Classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.Classifier</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the classifier (e.g. ‘lr1).</p></li>
+<li><p><strong>features_cols</strong> (<em>list of str</em><em> ,</em><em>optional</em>) – features list that the classifier should work on, while ignoring other features.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="automl_infrastructure.pipeline.base.Pipeline.last_step">
 <em class="property">property </em><code class="sig-name descname">last_step</code><a class="headerlink" href="#automl_infrastructure.pipeline.base.Pipeline.last_step" title="Permalink to this definition">¶</a></dt>
@@ -77,27 +85,77 @@
 <dl class="py method">
 <dt id="automl_infrastructure.pipeline.base.Pipeline.fit">
 <code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.base.Pipeline.fit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Training method on a given dataset with labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>pandas.DataFrame</em>) – the training dataset.
+Note that the training dataset may contain features of type vector (list or numpy.array).</p></li>
+<li><p><strong>y</strong> (<em>pandas.Series</em><em> or </em><em>list</em>) – labels of the training dataset.</p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.pipeline.base.Pipeline.predict">
 <code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.base.Pipeline.predict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The method receive a features dataset, and returns a class prediction for each row.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>pandas.DataFrame</em>) – <p>the features dataset.</p>
+<p>Note that the training dataset may contain features of type vector (list or numpy.array).</p>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list or numpy.array of classes predictions</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.pipeline.base.Pipeline.predict_proba">
 <code class="sig-name descname">predict_proba</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.base.Pipeline.predict_proba" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The method receive a features dataset, and returns classes probability prediction for each row.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>pandas.DataFrame</em>) – <p>the features dataset.</p>
+<p>Note that the training dataset may contain features of type vector (list or numpy.array).</p>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>list or numpy.array of classes probability predictions (may be also list or numpy.array).</p>
+<p>Note that the classes probability list order must be natively sorted (e.g. for string, alphabetically).</p>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.pipeline.base.Pipeline.set_params">
 <code class="sig-name descname">set_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.base.Pipeline.set_params" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Sets hyper-params of the classifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>dict of {str: Any}</em>) – dictionary of parameters value by their name (e.g. {‘C’ : 1.0}).</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.pipeline.base.Pipeline.get_params">
 <code class="sig-name descname">get_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">deep</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.pipeline.base.Pipeline.get_params" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Getter for the classifier hyper-params.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>deep</strong> (<em>bool</em><em> ,</em><em>optional</em>) – for complex classifiers, weather to return params of inner classifiers.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the classifier hyper-params.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
