@@ -233,11 +233,11 @@ class BasicClassifier(Classifier, ABC):
 
     def _predict_proba(self, x):
         """
-        The method receive a features dataset that MUST NOT contain vector features, and returns classes probability prediction for each row.
+        The method receive a features dataset, and returns classes probability prediction for each row.
 
         :param x: the features dataset.
 
-                Note that the training dataset may contain features of type vector (list or numpy.array).
+                Note that the training dataset MUST NOT contain features of type vector (list or numpy.array).
         :type x: pandas.DataFrame
 
         :return: list or numpy.array of classes probability predictions (may be also list or numpy.array).
@@ -248,10 +248,10 @@ class BasicClassifier(Classifier, ABC):
 
     def _fit(self, x, y, **kwargs):
         """
-        Training method on a given dataset that MUST NOT contain vector features with labels.
+        Training method on a given dataset with labels.
 
         :param x: the training dataset.
-                Note that the training dataset may contain features of type vector (list or numpy.array).
+                Note that the training dataset MUST NOT contain features of type vector (list or numpy.array).
         :type x: pandas.DataFrame
 
         :param y: labels of the training dataset.
