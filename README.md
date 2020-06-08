@@ -16,3 +16,5 @@ wide and easy-to-use infrastructure for classifiers modeling
         * Visualizations (e.g ConfusionMatrix).
  
  Note that every Visualization/Observation/Metric may be implemented by the user. 
+
+Make sure to look at the [docs](/docs/sphinx/build/html/index.html).
