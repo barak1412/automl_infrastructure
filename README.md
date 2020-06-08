@@ -17,4 +17,4 @@ wide and easy-to-use infrastructure for classifiers modeling
  
  Note that every Visualization/Observation/Metric may be implemented by the user. 
 
-Make sure to look at the [docs](/docs/sphinx/build/html/index.html).
+Make sure to look at the [docs](https://htmlpreview.github.io/?https://github.com/barak1412/automl_infrastructure/blob/master/docs/sphinx/build/html/index.html).
