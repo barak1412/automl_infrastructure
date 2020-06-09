@@ -6,7 +6,27 @@ from automl_infrastructure.utils import random_str
 
 class EnsembleClassifier(Classifier):
 
+    """
+    The EnsembleClassifier class represents a complex classifier that consists of one or more sub-classifiers.
+    The way the complex classifier works is:
+        - applying every sub-classifier on the dataset
+        - gather from every sub-classifiers the classes probabilities prediction, and apply ensemble model
+          on them with extra features (optional)
+    """
     def __init__(self, name, input_models, ensemble_model, ensemble_extra_features=None):
+        """
+        :param name: the name of the classifier.
+        :type name: str
+
+        :param input_models: list of sub-classifiers to aggregate their predictions.
+        :type input_models: list of :class:`automl_infrastructure.classifiers.base.Classifier`
+
+        :param ensemble_model: the aggregator classifier on top the sub-classifiers and possibly extra features.
+        :type ensemble_model: :class:`automl_infrastructure.classifiers.base.Classifier`
+
+        :param ensemble_extra_features: list of extra features that the ensemble model should work on.
+        :type ensemble_extra_features: list of str ,optional
+        """
         super().__init__(name)
         self._input_models = input_models
         self._ensemble_model = ensemble_model
@@ -16,6 +36,17 @@ class EnsembleClassifier(Classifier):
         self._temporary_ensemble_features = None
 
     def _prepare_features(self, x, recreate_features_names=False):
+        """
+        Prepare features for the ensemble model, using the sub-classifier classes probabilities prediction along side
+        extra features.
+
+        :param x: the original dataset.
+        :type x: pandas.DataFrame
+
+        :param recreate_features_names: weather to regenerate new features cols names
+        :type recreate_features_names: bool ,optional
+        """
+        # make probability prediction for every sub-classifier
         new_features = []
         for input_model in self._input_models:
             new_features.append(input_model.predict_proba(x))
@@ -33,6 +64,7 @@ class EnsembleClassifier(Classifier):
                 raise Exception('You must initialize new features names.')
             new_features_names = self._temporary_ensemble_features
 
+        # transform to pandas DataFrame form
         new_features_df = pd.DataFrame(features_array, columns=new_features_names)
         return new_features_df
 
