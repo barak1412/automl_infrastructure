@@ -29,7 +29,7 @@ class Metric(ABC):
         and returns score for each class if aggregation wasn't asked by the user, and one score otherwise.
 
         :param y_true: true labels
-        :type y: pandas.Series or list
+        :type y_true: pandas.Series or list
 
         :param classifier_prediction: class prediction with classes probabilities list
         :type classifier_prediction: list of :class:`automl_infrastructure.classifiers.base.ClassifierPrediction`
@@ -92,7 +92,7 @@ class SimpleMetric(Metric, ABC):
         Calculate the size of each class and return a sorted list of sizes according to classes order.
 
         :param y_true: true labels.
-        :type y_true: list or numpy.array
+        :type y_true: pandas.Series or list
 
         :param y_pred: classes predictions.
         :type y_pred: list or numpy.array
