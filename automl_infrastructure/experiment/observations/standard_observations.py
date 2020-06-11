@@ -3,6 +3,9 @@ import numpy as np
 
 
 class Std(SimpleObservation):
+    """
+    Implementation of standard deviation scores aggregation.
+    """
     def __init__(self, metric):
         super().__init__(metric)
 
@@ -11,6 +14,9 @@ class Std(SimpleObservation):
 
 
 class Avg(SimpleObservation):
+    """
+    Implementation of mean scores aggregation.
+    """
     def __init__(self, metric):
         super().__init__(metric)
 

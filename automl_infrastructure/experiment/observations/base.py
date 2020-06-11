@@ -5,7 +5,18 @@ import pandas as pd
 
 
 class Observation(ABC):
+    """
+    The Observation class wraps metric and defines aggregation on top of the metric scores list.
+    For instance, suppose we have list of accuracy scores, potential aggregations may be mean, std and ect'.
+    Note that the metric must be non-aggregated one, that is, the metric should give score for every class.
+    """
     def __init__(self, metric):
+        """
+        Initialize callable metric by a given metric.
+
+        :param metric: the metric we want to aggregate on top.
+        :type metric: str, callable or :class:`automl_infrastructure.experiment.metrics.base.Metric`
+        """
         if isinstance(metric, str):
             metric_obj = MetricFactory.create(metric)
             self._metric_func = lambda y_true, classifier_prediction: metric_obj.measure(y_true, classifier_prediction)
@@ -18,15 +29,46 @@ class Observation(ABC):
 
     @abstractmethod
     def observe(self, y_true_lst, classifier_prediction_lst, output_class_col='CLASS', output_observation_col='OBSERVATION'):
+        """
+        The method receives set of true labels list and set of predictions list, and returns the aggregated score for each class.
+        The concept of such aggregation is extremely useful in the k-fold cross-validation method, when you
+        want to average all folds scores for every class.
+
+        :param y_true_lst: list if true labels sets.
+        :type y_true_lst: list of pandas.Series or list
+
+        :param classifier_prediction_lst: list of classes predictions.
+        :type classifier_prediction_lst: list of :class:`automl_infrastructure.classifiers.base.ClassifierPrediction`
+
+        :param output_class_col: class column name for the output DataFrame.
+        :type output_class_col: str ,optional
+
+        :param output_observation_col: score column name for the output DataFrame.
+        :type output_observation_col: str ,optional
+
+        :return: pandas DataFrame with aggregated metric value for each class.
+        """
         pass
 
 
 class SimpleObservation(Observation):
+    """
+    The class SimpleObservation implements generic observation, leaving the aggregation implementation
+    part for the sub-classes.
+    """
     def __init__(self, metric):
         super().__init__(metric)
 
     @abstractmethod
     def agg_func(self, values):
+        """
+        Gets list of values and return aggregated value on top of them (e.g. mean, standard deviation and ect').
+
+        :param values: list of values to aggregate.
+        :type values: list of numbers
+
+        :return: single aggregated value.
+        """
         pass
 
     def observe(self, y_true_lst, classifier_prediction_lst, output_class_col='CLASS', output_observation_col='OBSERVATION'):
