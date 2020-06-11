@@ -254,11 +254,22 @@ Note that the training dataset may contain features of type vector (list or nump
 <dt id="automl_infrastructure.classifiers.ensemble_classifier.EnsembleClassifier">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.classifiers.ensemble_classifier.</code><code class="sig-name descname">EnsembleClassifier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">input_models</span></em>, <em class="sig-param"><span class="n">ensemble_model</span></em>, <em class="sig-param"><span class="n">ensemble_extra_features</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.classifiers.ensemble_classifier.EnsembleClassifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.classifiers.base.Classifier" title="automl_infrastructure.classifiers.base.Classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.Classifier</span></code></a></p>
+<p>The EnsembleClassifier class represents a complex classifier that consists of one or more sub-classifiers.
+The way the complex classifier works is:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>applying every sub-classifier on the dataset</p></li>
+<li><p>gather from every sub-classifiers the classes probabilities prediction, and apply ensemble model
+on them with extra features (optional)</p></li>
+</ul>
+</div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>str</em>) – name of the classifier (e.g. ‘lr1).</p></li>
-<li><p><strong>features_cols</strong> (<em>list of str</em><em> ,</em><em>optional</em>) – features list that the classifier should work on, while ignoring other features.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – the name of the classifier.</p></li>
+<li><p><strong>input_models</strong> (list of <a class="reference internal" href="#automl_infrastructure.classifiers.base.Classifier" title="automl_infrastructure.classifiers.base.Classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.Classifier</span></code></a>) – list of sub-classifiers to aggregate their predictions.</p></li>
+<li><p><strong>ensemble_model</strong> (<a class="reference internal" href="#automl_infrastructure.classifiers.base.Classifier" title="automl_infrastructure.classifiers.base.Classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.Classifier</span></code></a>) – the aggregator classifier on top the sub-classifiers and possibly extra features.</p></li>
+<li><p><strong>ensemble_extra_features</strong> (<em>list of str</em><em> ,</em><em>optional</em>) – list of extra features that the ensemble model should work on.</p></li>
 </ul>
 </dd>
 </dl>
