@@ -12,13 +12,13 @@ class MaxRecallAtPrecision(SimpleMetric):
 
     def __init__(self, precision, is_grouped=False, weighted=True):
         """
-        :param precision: the given precision to calculate the recall on
+        :param precision: the given precision to calculate the recall on.
         :type precision: any number
 
         :param is_grouped: weather to aggregate classes score to single value.
         :type is_grouped: bool ,optional
 
-        :param weighted: weather to use weights (according to classes size) during aggregation
+        :param weighted: weather to use weights (according to classes size) during aggregation.
         :type weighted: bool ,optional
         """
         super().__init__(is_grouped=is_grouped, weighted=weighted)
