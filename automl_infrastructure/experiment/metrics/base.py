@@ -77,10 +77,10 @@ class SimpleMetric(Metric, ABC):
         Same as measure method, but returns a dictionary of classes and their scores.
 
         :param y_true: true labels
-        :type y: pandas.Series or list
+        :type y_true: pandas.Series or list
 
         :param classifier_prediction: class prediction with classes probabilities list
-        :type classifier_prediction: list of :class:`automl_infrastructure.classifiers.base.ClassifierPrediction`
+        :type classifier_prediction: :class:`automl_infrastructure.classifiers.base.ClassifierPrediction`
 
         :return: a dictionary of classes and their scores
         """
