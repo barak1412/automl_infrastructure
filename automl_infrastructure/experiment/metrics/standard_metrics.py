@@ -4,6 +4,9 @@ from collections import OrderedDict
 
 
 class Accuracy(Metric):
+    """
+    The class implements the accuracy metric.
+    """
     def __init__(self, is_grouped=False, weighted=True):
         super().__init__(is_grouped, weighted)
 
@@ -18,6 +21,9 @@ class Accuracy(Metric):
 
 
 class F1Score(Metric):
+    """
+    The class implements the f1-score metric.
+    """
     def __init__(self, is_grouped=False, weighted=True):
         super().__init__(is_grouped, weighted)
 
@@ -32,6 +38,9 @@ class F1Score(Metric):
 
 
 class Precision(Metric):
+    """
+    The class implements the precision metric.
+    """
     def __init__(self, is_grouped=False, weighted=True):
         super().__init__(is_grouped, weighted)
 
@@ -46,6 +55,9 @@ class Precision(Metric):
 
 
 class Recall(Metric):
+    """
+    The class implements the recall metric.
+    """
     def __init__(self, is_grouped=False, weighted=True):
         super().__init__(is_grouped, weighted)
 
@@ -60,7 +72,21 @@ class Recall(Metric):
 
 
 class CohenKappa(Metric):
+    """
+    The class implements the cohen's kappa metric.
+    Note that the cohen's kappa metric must be grouped.
+    """
     def __init__(self, is_grouped=True, weighted=True, linear=True):
+        """
+        :param is_grouped: weather to aggregate classes score to single value.
+        :type is_grouped: bool ,optional
+
+        :param weighted: weather to use weights (according to classes size) during aggregation
+        :type weighted: bool ,optional
+
+        :param linear: weather to use linear cohen's kappa or quadratic one.
+        :type linear: bool ,optional
+        """
         super().__init__(is_grouped, weighted)
         self._linear = linear
         if not is_grouped:
@@ -78,6 +104,9 @@ class CohenKappa(Metric):
 
 
 class Support(Metric):
+    """
+    The class implements the support metric, that is, for every class how many instances it has.
+    """
     def __init__(self, is_grouped=False, weighted=True):
         super().__init__(is_grouped, weighted)
 
@@ -91,6 +120,14 @@ class Support(Metric):
 
     @staticmethod
     def _calculate_classes_occurrences(y_true):
+        """
+        Calculates for every class, its size.
+
+        :param y_true: the true labels.
+        :type y_true: pandas.Series or list
+
+        :return: ordered list of classes sizes, according to the classes lexicography order.
+        """
         classes_occur = {}
         for label in y_true:
             if label in classes_occur:
@@ -101,6 +138,9 @@ class Support(Metric):
 
 
 class MetricFactory(object):
+    """
+    Factory of non-grouped metrics - metrics that return score for every class, rather than unified score, by their name.
+    """
     standard_metrics = {
         'f1_score': F1Score(is_grouped=False),
         'precision': Precision(is_grouped=False),
@@ -110,13 +150,23 @@ class MetricFactory(object):
 
     @staticmethod
     def create(name):
+        """
+        Returns non-grouped :class:`automl_infrastructure.experiment.metrics.base.Metric` object, by given name.
+
+        :param name: the name of the metric must be selected from the closed pre-defined group
+                        ['f1_score', 'precision', 'recall', 'support'].
+
+        :return: non-grouped :class:`automl_infrastructure.experiment.metrics.base.Metric` object, by given name.
+        """
         if name not in MetricFactory.standard_metrics:
             raise Exception('Metric named {} is not supported'.format(name))
         return MetricFactory.standard_metrics[name]
 
 
 class ObjectiveFactory(object):
-
+    """
+    Factory of grouped metrics - metrics that return aggregated one score, by their name.
+    """
     standard_objectives = {
         'accuracy': Accuracy(is_grouped=True, weighted=False),
         'f1_score': F1Score(is_grouped=True, weighted=False),
@@ -132,6 +182,15 @@ class ObjectiveFactory(object):
 
     @staticmethod
     def create(name):
+        """
+        Returns grouped :class:`automl_infrastructure.experiment.metrics.base.Metric` object, by given name.
+
+        :param name: the name of the metric must be selected from the closed pre-defined group
+                    ['accuracy', 'weighted_f1_score', 'f1_score', 'weighted_precision', 'precision',
+                    'weighted_recall', 'recall', 'linear_cohen_kappa', 'quadratic_cohen_kappa', 'cohen_kappa'].
+
+        :return: grouped :class:`automl_infrastructure.experiment.metrics.base.Metric` object, by given name.
+        """
         if name not in ObjectiveFactory.standard_objectives:
             raise Exception('Objective named {} is not supported'.format(name))
         return ObjectiveFactory.standard_objectives[name]
