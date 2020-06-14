@@ -14,11 +14,20 @@ class ConfusionMatrix(Visualization):
     """
     def __init__(self, order=None, normalize=True, figsize=None, custom_thresholds=None, other_class='other'):
         """
-        :param order:
-        :param normalize:
-        :param figsize:
-        :param custom_thresholds:
-        :param other_class:
+        :param order: order of classes to show in diagram.
+        :type order: list ,optional
+
+        :param normalize: weather to normalize values inside the confusion matrix.
+        :type normalize: bool ,optional
+
+        :param figsize: the desired figure shape as tuple (height, width).
+        :type figsize: 2-dim tuple ,optional
+
+        :param custom_thresholds: custom thresholds for model classes probabilities.
+        :type custom_thresholds: dict of {str: number} ,optional
+
+        :param other_class: other class name, for 2 classes classification
+        :type other_class: str ,optional
         """
         self._order = order
         self._normalize = normalize
@@ -29,6 +38,9 @@ class ConfusionMatrix(Visualization):
         self._confusion_columns = None
 
     def to_dict(self):
+        """
+        :return: the confusion matrix values as dictionary
+        """
         d = {}
         for i in range(len(self._confusion_columns)):
             d[self._confusion_columns[i]] = {}
@@ -50,7 +62,7 @@ class ConfusionMatrix(Visualization):
         # calculate average confusion matrix
         for i in range(n):
             if self._custom_thresholds is not None:
-                classes_pred = self.repredict_other_label(classifier_prediction_lst[i].classes_proba, sorted(self._order))
+                classes_pred = self._repredict_other_label(classifier_prediction_lst[i].classes_proba, sorted(self._order))
             else:
                 classes_pred = classifier_prediction_lst[i].classes_pred
             current_matrix = confusion_matrix(y_true_lst[i], classes_pred,
@@ -66,13 +78,35 @@ class ConfusionMatrix(Visualization):
             accumulated_matrix = normalize(accumulated_matrix, axis=1, norm='l1')
         self._confusion_matrix = accumulated_matrix
 
-    def repredict_other_label(self, probs_lst, classes):
+    def _repredict_other_label(self, probabilities_lst, classes):
+        """
+        Repredict classes based on the predefined custom thresholds.
+
+        :param probabilities_lst: classes probabilities list for each instance.
+        :type probabilities_lst: list of lists in size classes
+
+        :param classes: list of ordered classes.
+        :type classes: list
+
+        :return: the new class prediction for every instance
+        """
         y_pred = [self._other_class if l[np.argmax(l)] < self._custom_thresholds[classes[np.argmax(l)]]\
-                      else classes[np.argmax(l)] for l in probs_lst]
+                      else classes[np.argmax(l)] for l in probabilities_lst]
         return y_pred
 
     @staticmethod
     def _create_matrix_figure(matrix_df, figsize):
+        """
+        Creates figure from confusion matrix and figure size.
+
+        :param matrix_df: the confusion matrix values.
+        :type matrix_df: pd.DataFrame
+
+        :param figsize: the desired figure shape as tuple (height, width).
+        :type figsize: 2-dim tuple ,optional
+
+        :return: confusion matrix figure.
+        """
         fig = plt.figure(figsize=figsize)
         plt.clf()
         plt.grid(b=None)
@@ -84,14 +118,11 @@ class ConfusionMatrix(Visualization):
             for y in range(height):
                 ax.annotate(float('%.2f' % matrix_df.iloc[x][y]), xy=(y, x), \
                             horizontalalignment='center', verticalalignment='center')
-        cb = fig.colorbar(res)
-        #plt.xticks(range(width), matrix_df.columns.tolist())
-        #plt.yticks(range(height), matrix_df.columns.tolist())
+
         ax.set_xticks(range(width))
         ax.set_yticks(range(height))
         ax.set_xticklabels(matrix_df.columns.tolist())
         ax.set_yticklabels(matrix_df.columns.tolist())
-        #ax.grid(which='minor', color='w', linestyle='-')
         ax.xaxis.tick_top()
         return fig
 
