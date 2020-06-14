@@ -481,6 +481,18 @@ class Experiment(object):
             self._models_test_visualizations[model_name][name] = test_visualization
 
     def get_model_observations(self, model_name, observation_type='test'):
+        """
+        Given model name and training group ('train' or 'test'), and returns the observations of the model
+        on the training group.
+
+        :param model_name: the name of the model.
+        :type model_name: str
+
+        :param observation_type: type of training group, must be 'train' or 'test'.
+        :type observation_type: str ,optional
+
+        :return: the observations of the model on the training group.
+        """
         if observation_type == 'test':
             return self._models_test_observations[model_name]
         elif observation_type == 'train':
@@ -489,6 +501,18 @@ class Experiment(object):
             raise Exception('Unsupported objective_type {}, only train or test supported.'.format(observation_type))
 
     def get_model_visualizations(self, model_name, observation_type='test'):
+        """
+        Given model name and training group ('train' or 'test'), and returns the visualizations of the model
+        on the training group.
+
+        :param model_name: the name of the model.
+        :type model_name: str
+
+        :param observation_type: type of training group, must be 'train' or 'test'.
+        :type observation_type: str ,optional
+
+        :return: the visualizations of the model on the training group.
+        """
         if observation_type == 'test':
             return self._models_test_visualizations[model_name]
         elif observation_type == 'train':
@@ -497,16 +521,40 @@ class Experiment(object):
             raise Exception('Unsupported observation_type {}, only train or test supported.'.format(observation_type))
 
     def add_observation(self, name, observation):
+        """
+        Add observation to the report.
+
+        :param name: the name of the observation to be shown in the report.
+        :type name: str
+
+        :param observation: the observation itself.
+        :type observation: :class:`automl_infrastructure.experiment.observations.base.Observation`
+        """
         if name in self._observations:
             raise Exception('Unable to add observation: observation named {} already exist.'.format(name))
         self._observations[name] = observation
 
     def add_visualization(self, name, visualization):
+        """
+        Add visualization to the report.
+
+        :param name: the name of the visualization to be shown in the report.
+        :type name: str
+
+        :param visualization: the visualization itself.
+        :type visualization: :class:`automl_infrastructure.visualization.base.Visualization`
+        """
         if name in self._visualizations:
             raise Exception('Unable to add visualization: visualization named {} already exist.'.format(name))
         self._visualizations[name] = visualization
 
     def remove_visualization(self, name):
+        """
+        Remove visualization from the report, by name.
+
+        :param name: name of visualization to remove.
+        :type name: str
+        """
         if name not in self._visualizations:
             raise Exception('Unable to remove visualization: visualization named {} does not exist.'.format(name))
         del self._visualizations[name]
