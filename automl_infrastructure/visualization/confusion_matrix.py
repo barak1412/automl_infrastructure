@@ -9,9 +9,17 @@ from bidi.algorithm import get_display
 
 
 class ConfusionMatrix(Visualization):
-
-    def __init__(self, sample_weight=None, order=None, normalize=True, figsize=None, custom_thresholds=None, other_class='other'):
-        self._sample_weight = sample_weight
+    """
+    Confusion matrix implementation follows the :class:`automl_infrastructure.visualization.base.Visualization` interface.
+    """
+    def __init__(self, order=None, normalize=True, figsize=None, custom_thresholds=None, other_class='other'):
+        """
+        :param order:
+        :param normalize:
+        :param figsize:
+        :param custom_thresholds:
+        :param other_class:
+        """
         self._order = order
         self._normalize = normalize
         self._confusion_matrix = None
