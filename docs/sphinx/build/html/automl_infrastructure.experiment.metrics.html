@@ -135,8 +135,8 @@ and one score otherwise (weighted if was asked by the user).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>y_true</strong> – true labels</p></li>
-<li><p><strong>classifier_prediction</strong> (list of <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.ClassifierPrediction" title="automl_infrastructure.classifiers.base.ClassifierPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.ClassifierPrediction</span></code></a>) – class prediction with classes probabilities list</p></li>
+<li><p><strong>y_true</strong> (<em>pandas.Series</em><em> or </em><em>list</em>) – true labels</p></li>
+<li><p><strong>classifier_prediction</strong> (<a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.ClassifierPrediction" title="automl_infrastructure.classifiers.base.ClassifierPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.ClassifierPrediction</span></code></a>) – class prediction with classes probabilities list</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -158,9 +158,9 @@ and one score otherwise (weighted if was asked by the user).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>precision</strong> (<em>any number</em>) – the given precision to calculate the recall on</p></li>
+<li><p><strong>precision</strong> (<em>any number</em>) – the given precision to calculate the recall on.</p></li>
 <li><p><strong>is_grouped</strong> (<em>bool</em><em> ,</em><em>optional</em>) – weather to aggregate classes score to single value.</p></li>
-<li><p><strong>weighted</strong> (<em>bool</em><em> ,</em><em>optional</em>) – weather to use weights (according to classes size) during aggregation</p></li>
+<li><p><strong>weighted</strong> (<em>bool</em><em> ,</em><em>optional</em>) – weather to use weights (according to classes size) during aggregation.</p></li>
 </ul>
 </dd>
 </dl>
@@ -171,8 +171,8 @@ and one score otherwise (weighted if was asked by the user).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>y_true</strong> – true labels</p></li>
-<li><p><strong>classifier_prediction</strong> (list of <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.ClassifierPrediction" title="automl_infrastructure.classifiers.base.ClassifierPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.ClassifierPrediction</span></code></a>) – class prediction with classes probabilities list</p></li>
+<li><p><strong>y_true</strong> (<em>pandas.Series</em><em> or </em><em>list</em>) – true labels</p></li>
+<li><p><strong>classifier_prediction</strong> (<a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.ClassifierPrediction" title="automl_infrastructure.classifiers.base.ClassifierPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.ClassifierPrediction</span></code></a>) – class prediction with classes probabilities list</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -460,9 +460,11 @@ and one score otherwise (weighted if was asked by the user).</p>
 <dt id="automl_infrastructure.experiment.metrics.threshold_min_precision.ThresholdMinPrecision">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.metrics.threshold_min_precision.</code><code class="sig-name descname">ThresholdMinPrecision</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">precision</span></em>, <em class="sig-param"><span class="n">is_grouped</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">weighted</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.metrics.threshold_min_precision.ThresholdMinPrecision" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.experiment.metrics.base.SimpleMetric" title="automl_infrastructure.experiment.metrics.base.SimpleMetric"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.metrics.base.SimpleMetric</span></code></a></p>
+<p>The metric find the threshold of the model, for a given precision, using the precision-recall curve.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>precision</strong> (<em>any number</em>) – the given precision to find the threshold on.</p></li>
 <li><p><strong>is_grouped</strong> (<em>bool</em><em> ,</em><em>optional</em>) – weather to aggregate classes score to single value.</p></li>
 <li><p><strong>weighted</strong> (<em>bool</em><em> ,</em><em>optional</em>) – weather to use weights (according to classes size) during aggregation</p></li>
 </ul>
@@ -475,8 +477,8 @@ and one score otherwise (weighted if was asked by the user).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>y_true</strong> – true labels</p></li>
-<li><p><strong>classifier_prediction</strong> (list of <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.ClassifierPrediction" title="automl_infrastructure.classifiers.base.ClassifierPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.ClassifierPrediction</span></code></a>) – class prediction with classes probabilities list</p></li>
+<li><p><strong>y_true</strong> (<em>pandas.Series</em><em> or </em><em>list</em>) – true labels</p></li>
+<li><p><strong>classifier_prediction</strong> (<a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.ClassifierPrediction" title="automl_infrastructure.classifiers.base.ClassifierPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.ClassifierPrediction</span></code></a>) – class prediction with classes probabilities list</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -493,12 +495,32 @@ and one score otherwise (weighted if was asked by the user).</p>
 <dl class="py function">
 <dt id="automl_infrastructure.experiment.metrics.utils.parse_metric">
 <code class="sig-prename descclassname">automl_infrastructure.experiment.metrics.utils.</code><code class="sig-name descname">parse_metric</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metric</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.metrics.utils.parse_metric" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Receive metric and return callable that calculate the metric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>metric</strong> (str, callable or <a class="reference internal" href="#automl_infrastructure.experiment.metrics.base.Metric" title="automl_infrastructure.experiment.metrics.base.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.metrics.base.Metric</span></code></a>) – the metric to parse.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>callable (list of Any, list of <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.ClassifierPrediction" title="automl_infrastructure.classifiers.base.ClassifierPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.ClassifierPrediction</span></code></a> -&gt;
+number or list of numbers) that calculate the metric.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="automl_infrastructure.experiment.metrics.utils.parse_objective">
 <code class="sig-prename descclassname">automl_infrastructure.experiment.metrics.utils.</code><code class="sig-name descname">parse_objective</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">objective</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.metrics.utils.parse_objective" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Receive objective (aggregated metric) and return callable that calculate the metric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>objective</strong> (<em>str</em><em> or </em><em>callable</em>) – the objective to parse.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>callable (list of Any, list of <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.ClassifierPrediction" title="automl_infrastructure.classifiers.base.ClassifierPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.ClassifierPrediction</span></code></a> -&gt;
+number) that calculate the metric.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-automl_infrastructure.experiment.metrics">

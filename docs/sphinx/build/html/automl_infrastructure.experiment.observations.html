@@ -57,10 +57,35 @@
 <dt id="automl_infrastructure.experiment.observations.base.Observation">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.observations.base.</code><code class="sig-name descname">Observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metric</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.observations.base.Observation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>The Observation class wraps metric and defines aggregation on top of the metric scores list.
+For instance, suppose we have list of accuracy scores, potential aggregations may be mean, std and ect’.
+Note that the metric must be non-aggregated one, that is, the metric should give score for every class.</p>
+<p>Initialize callable metric by a given metric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>metric</strong> (str, callable or <a class="reference internal" href="automl_infrastructure.experiment.metrics.html#automl_infrastructure.experiment.metrics.base.Metric" title="automl_infrastructure.experiment.metrics.base.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.metrics.base.Metric</span></code></a>) – the metric we want to aggregate on top.</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.observations.base.Observation.observe">
 <em class="property">abstract </em><code class="sig-name descname">observe</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true_lst</span></em>, <em class="sig-param"><span class="n">classifier_prediction_lst</span></em>, <em class="sig-param"><span class="n">output_class_col</span><span class="o">=</span><span class="default_value">'CLASS'</span></em>, <em class="sig-param"><span class="n">output_observation_col</span><span class="o">=</span><span class="default_value">'OBSERVATION'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.observations.base.Observation.observe" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The method receives set of true labels list and set of predictions list, and returns the aggregated score for each class.
+The concept of such aggregation is extremely useful in the k-fold cross-validation method, when you
+want to average all folds scores for every class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true_lst</strong> (<em>list of pandas.Series</em><em> or </em><em>list</em>) – list if true labels sets.</p></li>
+<li><p><strong>classifier_prediction_lst</strong> (list of <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.ClassifierPrediction" title="automl_infrastructure.classifiers.base.ClassifierPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.ClassifierPrediction</span></code></a>) – list of classes predictions.</p></li>
+<li><p><strong>output_class_col</strong> (<em>str</em><em> ,</em><em>optional</em>) – class column name for the output DataFrame.</p></li>
+<li><p><strong>output_observation_col</strong> (<em>str</em><em> ,</em><em>optional</em>) – score column name for the output DataFrame.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>pandas DataFrame with aggregated metric value for each class.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -68,15 +93,48 @@
 <dt id="automl_infrastructure.experiment.observations.base.SimpleObservation">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.observations.base.</code><code class="sig-name descname">SimpleObservation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metric</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.observations.base.SimpleObservation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.experiment.observations.base.Observation" title="automl_infrastructure.experiment.observations.base.Observation"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.observations.base.Observation</span></code></a></p>
+<p>The class SimpleObservation implements generic observation, leaving the aggregation implementation
+part for the sub-classes.</p>
+<p>Initialize callable metric by a given metric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>metric</strong> (str, callable or <a class="reference internal" href="automl_infrastructure.experiment.metrics.html#automl_infrastructure.experiment.metrics.base.Metric" title="automl_infrastructure.experiment.metrics.base.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.metrics.base.Metric</span></code></a>) – the metric we want to aggregate on top.</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.observations.base.SimpleObservation.agg_func">
 <em class="property">abstract </em><code class="sig-name descname">agg_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">values</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.observations.base.SimpleObservation.agg_func" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Gets list of values and return aggregated value on top of them (e.g. mean, standard deviation and ect’).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values</strong> (<em>list of numbers</em>) – list of values to aggregate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single aggregated value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.observations.base.SimpleObservation.observe">
 <code class="sig-name descname">observe</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true_lst</span></em>, <em class="sig-param"><span class="n">classifier_prediction_lst</span></em>, <em class="sig-param"><span class="n">output_class_col</span><span class="o">=</span><span class="default_value">'CLASS'</span></em>, <em class="sig-param"><span class="n">output_observation_col</span><span class="o">=</span><span class="default_value">'OBSERVATION'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.observations.base.SimpleObservation.observe" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The method receives set of true labels list and set of predictions list, and returns the aggregated score for each class.
+The concept of such aggregation is extremely useful in the k-fold cross-validation method, when you
+want to average all folds scores for every class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true_lst</strong> (<em>list of pandas.Series</em><em> or </em><em>list</em>) – list if true labels sets.</p></li>
+<li><p><strong>classifier_prediction_lst</strong> (list of <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.ClassifierPrediction" title="automl_infrastructure.classifiers.base.ClassifierPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.ClassifierPrediction</span></code></a>) – list of classes predictions.</p></li>
+<li><p><strong>output_class_col</strong> (<em>str</em><em> ,</em><em>optional</em>) – class column name for the output DataFrame.</p></li>
+<li><p><strong>output_observation_col</strong> (<em>str</em><em> ,</em><em>optional</em>) – score column name for the output DataFrame.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>pandas DataFrame with aggregated metric value for each class.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -87,10 +145,26 @@
 <dt id="automl_infrastructure.experiment.observations.standard_observations.Std">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.observations.standard_observations.</code><code class="sig-name descname">Std</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metric</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.observations.standard_observations.Std" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.experiment.observations.base.SimpleObservation" title="automl_infrastructure.experiment.observations.base.SimpleObservation"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.observations.base.SimpleObservation</span></code></a></p>
+<p>Implementation of standard deviation scores aggregation.</p>
+<p>Initialize callable metric by a given metric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>metric</strong> (str, callable or <a class="reference internal" href="automl_infrastructure.experiment.metrics.html#automl_infrastructure.experiment.metrics.base.Metric" title="automl_infrastructure.experiment.metrics.base.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.metrics.base.Metric</span></code></a>) – the metric we want to aggregate on top.</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.observations.standard_observations.Std.agg_func">
 <code class="sig-name descname">agg_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">values</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.observations.standard_observations.Std.agg_func" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Gets list of values and return aggregated value on top of them (e.g. mean, standard deviation and ect’).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values</strong> (<em>list of numbers</em>) – list of values to aggregate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single aggregated value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -98,10 +172,26 @@
 <dt id="automl_infrastructure.experiment.observations.standard_observations.Avg">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.observations.standard_observations.</code><code class="sig-name descname">Avg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metric</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.observations.standard_observations.Avg" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.experiment.observations.base.SimpleObservation" title="automl_infrastructure.experiment.observations.base.SimpleObservation"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.observations.base.SimpleObservation</span></code></a></p>
+<p>Implementation of mean scores aggregation.</p>
+<p>Initialize callable metric by a given metric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>metric</strong> (str, callable or <a class="reference internal" href="automl_infrastructure.experiment.metrics.html#automl_infrastructure.experiment.metrics.base.Metric" title="automl_infrastructure.experiment.metrics.base.Metric"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.metrics.base.Metric</span></code></a>) – the metric we want to aggregate on top.</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.observations.standard_observations.Avg.agg_func">
 <code class="sig-name descname">agg_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">values</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.observations.standard_observations.Avg.agg_func" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Gets list of values and return aggregated value on top of them (e.g. mean, standard deviation and ect’).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values</strong> (<em>list of numbers</em>) – list of values to aggregate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single aggregated value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

@@ -201,27 +201,77 @@ optimization process (look at Optuna for deep understanding).</p></li>
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.base.Experiment.get_model_observations">
 <code class="sig-name descname">get_model_observations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_name</span></em>, <em class="sig-param"><span class="n">observation_type</span><span class="o">=</span><span class="default_value">'test'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.get_model_observations" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Given model name and training group (‘train’ or ‘test’), and returns the observations of the model
+on the training group.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_name</strong> (<em>str</em>) – the name of the model.</p></li>
+<li><p><strong>observation_type</strong> (<em>str</em><em> ,</em><em>optional</em>) – type of training group, must be ‘train’ or ‘test’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the observations of the model on the training group.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.base.Experiment.get_model_visualizations">
 <code class="sig-name descname">get_model_visualizations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_name</span></em>, <em class="sig-param"><span class="n">observation_type</span><span class="o">=</span><span class="default_value">'test'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.get_model_visualizations" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Given model name and training group (‘train’ or ‘test’), and returns the visualizations of the model
+on the training group.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_name</strong> (<em>str</em>) – the name of the model.</p></li>
+<li><p><strong>observation_type</strong> (<em>str</em><em> ,</em><em>optional</em>) – type of training group, must be ‘train’ or ‘test’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the visualizations of the model on the training group.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.base.Experiment.add_observation">
 <code class="sig-name descname">add_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">observation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.add_observation" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Add observation to the report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – the name of the observation to be shown in the report.</p></li>
+<li><p><strong>observation</strong> (<a class="reference internal" href="automl_infrastructure.experiment.observations.html#automl_infrastructure.experiment.observations.base.Observation" title="automl_infrastructure.experiment.observations.base.Observation"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.observations.base.Observation</span></code></a>) – the observation itself.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.base.Experiment.add_visualization">
 <code class="sig-name descname">add_visualization</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">visualization</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.add_visualization" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Add visualization to the report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – the name of the visualization to be shown in the report.</p></li>
+<li><p><strong>visualization</strong> (<a class="reference internal" href="automl_infrastructure.visualization.html#automl_infrastructure.visualization.base.Visualization" title="automl_infrastructure.visualization.base.Visualization"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.visualization.base.Visualization</span></code></a>) – the visualization itself.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.base.Experiment.remove_visualization">
 <code class="sig-name descname">remove_visualization</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.base.Experiment.remove_visualization" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Remove visualization from the report, by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – name of visualization to remove.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.base.Experiment.print_report">
@@ -258,54 +308,155 @@ optimization process (look at Optuna for deep understanding).</p></li>
 <div class="section" id="module-automl_infrastructure.experiment.params">
 <span id="automl-infrastructure-experiment-params-module"></span><h2>automl_infrastructure.experiment.params module<a class="headerlink" href="#module-automl_infrastructure.experiment.params" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="automl_infrastructure.experiment.params.ParameterSuggestor">
-<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.params.</code><code class="sig-name descname">ParameterSuggestor</code><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggestor" title="Permalink to this definition">¶</a></dt>
+<dt id="automl_infrastructure.experiment.params.ParameterSuggester">
+<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.params.</code><code class="sig-name descname">ParameterSuggester</code><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggester" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>The class ParameterSuggester represents an interface (API) for parameter suggester in the hyper-params
+optimization process.</p>
 <dl class="py method">
-<dt id="automl_infrastructure.experiment.params.ParameterSuggestor.suggest_continous_float">
-<em class="property">abstract </em><code class="sig-name descname">suggest_continous_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">log</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggestor.suggest_continous_float" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="automl_infrastructure.experiment.params.ParameterSuggester.suggest_continuous_float">
+<em class="property">abstract </em><code class="sig-name descname">suggest_continuous_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">log</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggester.suggest_continuous_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suggests decimal value in the continuous range of [low,high], with the possibility of log scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the hyper-param we want to get suggestion for.</p></li>
+<li><p><strong>low</strong> (<em>number</em>) – lower bound range for suggestion.</p></li>
+<li><p><strong>high</strong> (<em>number</em>) – higher bound range for suggestion.</p></li>
+<li><p><strong>log</strong> (<em>bool</em>) – weather to use log scale.</p></li>
+</ul>
+</dd>
+</dl>
+<p>:return the suggested number.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt id="automl_infrastructure.experiment.params.ParameterSuggestor.suggest_discrete_float">
-<em class="property">abstract </em><code class="sig-name descname">suggest_discrete_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">step</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggestor.suggest_discrete_float" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="automl_infrastructure.experiment.params.ParameterSuggester.suggest_discrete_float">
+<em class="property">abstract </em><code class="sig-name descname">suggest_discrete_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">step</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggester.suggest_discrete_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suggests decimal value in the discrete range of [low,high] with given step size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the hyper-param we want to get suggestion for.</p></li>
+<li><p><strong>low</strong> (<em>number</em>) – lower bound range for suggestion.</p></li>
+<li><p><strong>high</strong> (<em>number</em>) – higher bound range for suggestion.</p></li>
+<li><p><strong>step</strong> – the step size to pick discrete values.</p></li>
+</ul>
+</dd>
+</dl>
+<p>:return the suggested number (which may be low, low+step, low+2*step and ect’).</p>
+</dd></dl>
 
 <dl class="py method">
-<dt id="automl_infrastructure.experiment.params.ParameterSuggestor.suggest_int">
-<em class="property">abstract </em><code class="sig-name descname">suggest_int</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggestor.suggest_int" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="automl_infrastructure.experiment.params.ParameterSuggester.suggest_int">
+<em class="property">abstract </em><code class="sig-name descname">suggest_int</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggester.suggest_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suggests int value in the range of [low,high].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the hyper-param we want to get suggestion for.</p></li>
+<li><p><strong>low</strong> (<em>int</em>) – lower bound range for suggestion.</p></li>
+<li><p><strong>high</strong> (<em>int</em>) – higher bound range for suggestion.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the suggested number (which may be low, low+1, low+2 and ect’).</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
-<dt id="automl_infrastructure.experiment.params.ParameterSuggestor.suggest_list">
-<em class="property">abstract </em><code class="sig-name descname">suggest_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">options</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggestor.suggest_list" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="automl_infrastructure.experiment.params.ParameterSuggester.suggest_list">
+<em class="property">abstract </em><code class="sig-name descname">suggest_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">options</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ParameterSuggester.suggest_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suggests one value from a given list of values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the hyper-param we want to get suggestion for.</p></li>
+<li><p><strong>options</strong> (<em>list of Any</em>) – list of options for values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>one value from the given list of values</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggestor">
-<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.params.</code><code class="sig-name descname">OptunaParameterSuggestor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggestor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.experiment.params.ParameterSuggestor" title="automl_infrastructure.experiment.params.ParameterSuggestor"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.params.ParameterSuggestor</span></code></a></p>
+<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggester">
+<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.params.</code><code class="sig-name descname">OptunaParameterSuggester</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trial</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggester" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.experiment.params.ParameterSuggester" title="automl_infrastructure.experiment.params.ParameterSuggester"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.params.ParameterSuggester</span></code></a></p>
+<p>Wrapper for Optuna, to implement the <a class="reference internal" href="#automl_infrastructure.experiment.params.ParameterSuggester" title="automl_infrastructure.experiment.params.ParameterSuggester"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.params.ParameterSuggester</span></code></a> interface.</p>
 <dl class="py method">
-<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_continous_float">
-<code class="sig-name descname">suggest_continous_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">log</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_continous_float" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggester.suggest_continuous_float">
+<code class="sig-name descname">suggest_continuous_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">log</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggester.suggest_continuous_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suggests decimal value in the continuous range of [low,high], with the possibility of log scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the hyper-param we want to get suggestion for.</p></li>
+<li><p><strong>low</strong> (<em>number</em>) – lower bound range for suggestion.</p></li>
+<li><p><strong>high</strong> (<em>number</em>) – higher bound range for suggestion.</p></li>
+<li><p><strong>log</strong> (<em>bool</em>) – weather to use log scale.</p></li>
+</ul>
+</dd>
+</dl>
+<p>:return the suggested number.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_discrete_float">
-<code class="sig-name descname">suggest_discrete_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">step</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_discrete_float" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggester.suggest_discrete_float">
+<code class="sig-name descname">suggest_discrete_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em>, <em class="sig-param"><span class="n">step</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggester.suggest_discrete_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suggests decimal value in the discrete range of [low,high] with given step size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the hyper-param we want to get suggestion for.</p></li>
+<li><p><strong>low</strong> (<em>number</em>) – lower bound range for suggestion.</p></li>
+<li><p><strong>high</strong> (<em>number</em>) – higher bound range for suggestion.</p></li>
+<li><p><strong>step</strong> – the step size to pick discrete values.</p></li>
+</ul>
+</dd>
+</dl>
+<p>:return the suggested number (which may be low, low+step, low+2*step and ect’).</p>
+</dd></dl>
 
 <dl class="py method">
-<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_int">
-<code class="sig-name descname">suggest_int</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_int" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggester.suggest_int">
+<code class="sig-name descname">suggest_int</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">low</span></em>, <em class="sig-param"><span class="n">high</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggester.suggest_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suggests int value in the range of [low,high].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the hyper-param we want to get suggestion for.</p></li>
+<li><p><strong>low</strong> (<em>int</em>) – lower bound range for suggestion.</p></li>
+<li><p><strong>high</strong> (<em>int</em>) – higher bound range for suggestion.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the suggested number (which may be low, low+1, low+2 and ect’).</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
-<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_list">
-<code class="sig-name descname">suggest_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">options</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggestor.suggest_list" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="automl_infrastructure.experiment.params.OptunaParameterSuggester.suggest_list">
+<code class="sig-name descname">suggest_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">options</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.OptunaParameterSuggester.suggest_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suggests one value from a given list of values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the hyper-param we want to get suggestion for.</p></li>
+<li><p><strong>options</strong> (<em>list of Any</em>) – list of options for values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>one value from the given list of values</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -313,6 +464,13 @@ optimization process (look at Optuna for deep understanding).</p></li>
 <dt id="automl_infrastructure.experiment.params.Parameter">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.params.</code><code class="sig-name descname">Parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.Parameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>The Parameter interface defines API for params that can be used in the hyper-params declaration.</p>
+<p>Initialize the parameter name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – the name of the hyper-param.</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.params.Parameter.name">
 <em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#automl_infrastructure.experiment.params.Parameter.name" title="Permalink to this definition">¶</a></dt>
@@ -325,13 +483,27 @@ optimization process (look at Optuna for deep understanding).</p></li>
 
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.params.Parameter.suggest">
-<em class="property">abstract </em><code class="sig-name descname">suggest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">suggestor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.Parameter.suggest" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property">abstract </em><code class="sig-name descname">suggest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">suggester</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.Parameter.suggest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suggests value based on suggester.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>suggester</strong> (<a class="reference internal" href="#automl_infrastructure.experiment.params.ParameterSuggester" title="automl_infrastructure.experiment.params.ParameterSuggester"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.params.ParameterSuggester</span></code></a>) – value suggester.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the suggested value by the suggester</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.params.Parameter.copy">
 <em class="property">abstract </em><code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.Parameter.copy" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>deep copy of the parameter.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -339,15 +511,43 @@ optimization process (look at Optuna for deep understanding).</p></li>
 <dt id="automl_infrastructure.experiment.params.RangedParameter">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.params.</code><code class="sig-name descname">RangedParameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">lower</span></em>, <em class="sig-param"><span class="n">upper</span></em>, <em class="sig-param"><span class="n">discrete</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">step_rate</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">log</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.RangedParameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.experiment.params.Parameter" title="automl_infrastructure.experiment.params.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.params.Parameter</span></code></a></p>
+<p>The RangedParameter implements the <a class="reference internal" href="#automl_infrastructure.experiment.params.ParameterSuggester" title="automl_infrastructure.experiment.params.ParameterSuggester"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.params.ParameterSuggester</span></code></a> interface
+for ranged parameters, discrete or continuous, int or decimals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the hyper-parameter.</p></li>
+<li><p><strong>lower</strong> (<em>number</em>) – lower bound range for suggestion.</p></li>
+<li><p><strong>upper</strong> (<em>number</em>) – higher bound range for suggestion.</p></li>
+<li><p><strong>discrete</strong> (<em>bool</em><em> ,</em><em>optional</em>) – weather to suggest discrete value or continuous</p></li>
+<li><p><strong>step_rate</strong> (<em>number</em><em> ,</em><em>optional</em>) – for discrete decimal value, the required step size</p></li>
+<li><p><strong>log</strong> (<em>bool</em><em> ,</em><em>optional</em>) – for continuous value, weather to use log scale.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.params.RangedParameter.suggest">
-<code class="sig-name descname">suggest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">suggestor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.RangedParameter.suggest" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">suggest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">suggester</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.RangedParameter.suggest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suggests value based on suggester.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>suggester</strong> (<a class="reference internal" href="#automl_infrastructure.experiment.params.ParameterSuggester" title="automl_infrastructure.experiment.params.ParameterSuggester"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.params.ParameterSuggester</span></code></a>) – value suggester.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the suggested value by the suggester</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.params.RangedParameter.copy">
 <code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.RangedParameter.copy" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>deep copy of the parameter.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -355,15 +555,39 @@ optimization process (look at Optuna for deep understanding).</p></li>
 <dt id="automl_infrastructure.experiment.params.ListParameter">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.experiment.params.</code><code class="sig-name descname">ListParameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">options</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ListParameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.experiment.params.Parameter" title="automl_infrastructure.experiment.params.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.params.Parameter</span></code></a></p>
+<p>The ListParameter implements the <a class="reference internal" href="#automl_infrastructure.experiment.params.ParameterSuggester" title="automl_infrastructure.experiment.params.ParameterSuggester"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.params.ParameterSuggester</span></code></a> interface
+for parameters with closed number of options.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the hyper-parameter.</p></li>
+<li><p><strong>options</strong> (<em>list of Any</em>) – list of options values to choose from.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.params.ListParameter.suggest">
-<code class="sig-name descname">suggest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">suggestor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ListParameter.suggest" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">suggest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">suggester</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ListParameter.suggest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suggests value based on suggester.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>suggester</strong> (<a class="reference internal" href="#automl_infrastructure.experiment.params.ParameterSuggester" title="automl_infrastructure.experiment.params.ParameterSuggester"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.experiment.params.ParameterSuggester</span></code></a>) – value suggester.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the suggested value by the suggester</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.experiment.params.ListParameter.copy">
 <code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.experiment.params.ListParameter.copy" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>deep copy of the parameter.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
