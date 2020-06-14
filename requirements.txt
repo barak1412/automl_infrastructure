@@ -6,3 +6,4 @@ dill
 numpy
 lime
 scipy
+matplotlib
