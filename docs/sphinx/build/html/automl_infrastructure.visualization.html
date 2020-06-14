@@ -52,15 +52,26 @@
 <dt id="automl_infrastructure.visualization.base.Visualization">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.visualization.base.</code><code class="sig-name descname">Visualization</code><a class="headerlink" href="#automl_infrastructure.visualization.base.Visualization" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>The class Visualization represents an interface (API) for all kind of visualizations.</p>
 <dl class="py method">
 <dt id="automl_infrastructure.visualization.base.Visualization.fit">
 <em class="property">abstract </em><code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true_lst</span></em>, <em class="sig-param"><span class="n">classifier_prediction_lst</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.base.Visualization.fit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Fits the visualization with a given sets of true labels list and classifier predictions list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true_lst</strong> (<em>list of pandas.Series</em><em> or </em><em>list</em>) – list of true labels list</p></li>
+<li><p><strong>classifier_prediction_lst</strong> (list of <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.ClassifierPrediction" title="automl_infrastructure.classifiers.base.ClassifierPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.ClassifierPrediction</span></code></a>) – list of classes predictions.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.visualization.base.Visualization.show">
 <em class="property">abstract </em><code class="sig-name descname">show</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.base.Visualization.show" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Shows the visualization (may be matplotlib diagram or any kind of printing).</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -69,27 +80,49 @@
 <span id="automl-infrastructure-visualization-confusion-matrix-module"></span><h2>automl_infrastructure.visualization.confusion_matrix module<a class="headerlink" href="#module-automl_infrastructure.visualization.confusion_matrix" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix">
-<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.visualization.confusion_matrix.</code><code class="sig-name descname">ConfusionMatrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sample_weight</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">order</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">normalize</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">custom_thresholds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">other_class</span><span class="o">=</span><span class="default_value">'other'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.visualization.confusion_matrix.</code><code class="sig-name descname">ConfusionMatrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">order</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">normalize</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">custom_thresholds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">other_class</span><span class="o">=</span><span class="default_value">'other'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.visualization.base.Visualization" title="automl_infrastructure.visualization.base.Visualization"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.visualization.base.Visualization</span></code></a></p>
+<p>Confusion matrix implementation follows the <a class="reference internal" href="#automl_infrastructure.visualization.base.Visualization" title="automl_infrastructure.visualization.base.Visualization"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.visualization.base.Visualization</span></code></a> interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order</strong> (<em>list</em><em> ,</em><em>optional</em>) – order of classes to show in diagram.</p></li>
+<li><p><strong>normalize</strong> (<em>bool</em><em> ,</em><em>optional</em>) – weather to normalize values inside the confusion matrix.</p></li>
+<li><p><strong>figsize</strong> (<em>2-dim tuple</em><em> ,</em><em>optional</em>) – the desired figure shape as tuple (height, width).</p></li>
+<li><p><strong>custom_thresholds</strong> (<em>dict of {str: number}</em><em> ,</em><em>optional</em>) – custom thresholds for model classes probabilities.</p></li>
+<li><p><strong>other_class</strong> (<em>str</em><em> ,</em><em>optional</em>) – other class name, for 2 classes classification</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.to_dict">
 <code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.to_dict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the confusion matrix values as dictionary</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.fit">
 <code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true_lst</span></em>, <em class="sig-param"><span class="n">classifier_prediction_lst</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.fit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.repredict_other_label">
-<code class="sig-name descname">repredict_other_label</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">probs_lst</span></em>, <em class="sig-param"><span class="n">classes</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.repredict_other_label" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Fits the visualization with a given sets of true labels list and classifier predictions list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true_lst</strong> (<em>list of pandas.Series</em><em> or </em><em>list</em>) – list of true labels list</p></li>
+<li><p><strong>classifier_prediction_lst</strong> (list of <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.ClassifierPrediction" title="automl_infrastructure.classifiers.base.ClassifierPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.ClassifierPrediction</span></code></a>) – list of classes predictions.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.show">
 <code class="sig-name descname">show</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.confusion_matrix.ConfusionMatrix.show" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Shows the visualization (may be matplotlib diagram or any kind of printing).</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -100,15 +133,41 @@
 <dt id="automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve">
 <em class="property">class </em><code class="sig-prename descclassname">automl_infrastructure.visualization.precision_recall_curve.</code><code class="sig-name descname">PrecisionRecallCurve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">max_classes_per_figure</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">n_thresholds</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#automl_infrastructure.visualization.base.Visualization" title="automl_infrastructure.visualization.base.Visualization"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.visualization.base.Visualization</span></code></a></p>
+<p>Precision-recall curve implementation follows the <a class="reference internal" href="#automl_infrastructure.visualization.base.Visualization" title="automl_infrastructure.visualization.base.Visualization"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.visualization.base.Visualization</span></code></a> interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_classes_per_figure</strong> (<em>int</em><em> ,</em><em>optional</em>) – maximum number of classes inside each graph.</p></li>
+<li><p><strong>n_thresholds</strong> (<em>list</em><em> ,</em><em>optional</em>) – custom thresholds (ticks) for the precision-recall curve.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.fit">
 <code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_true_lst</span></em>, <em class="sig-param"><span class="n">classifier_prediction_lst</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.fit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Fits the visualization with a given sets of true labels list and classifier predictions list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true_lst</strong> (<em>list of pandas.Series</em><em> or </em><em>list</em>) – list of true labels list</p></li>
+<li><p><strong>classifier_prediction_lst</strong> (list of <a class="reference internal" href="automl_infrastructure.classifiers.html#automl_infrastructure.classifiers.base.ClassifierPrediction" title="automl_infrastructure.classifiers.base.ClassifierPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">automl_infrastructure.classifiers.base.ClassifierPrediction</span></code></a>) – list of classes predictions.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.get_curve">
 <code class="sig-name descname">get_curve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">class_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.get_curve" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>class_name</strong> (<em>str</em>) – the name of the class.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>precision-recall curve of the given class.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.classes_">
@@ -118,7 +177,8 @@
 <dl class="py method">
 <dt id="automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.show">
 <code class="sig-name descname">show</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#automl_infrastructure.visualization.precision_recall_curve.PrecisionRecallCurve.show" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Shows the visualization (may be matplotlib diagram or any kind of printing).</p>
+</dd></dl>
 
 </dd></dl>
 
