@@ -10,7 +10,7 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.utils import shuffle
 from automl_infrastructure.classifiers import ClassifierPrediction
 from automl_infrastructure.experiment.metrics.standard_metrics import ObjectiveFactory
-from automl_infrastructure.experiment.params import OptunaParameterSuggestor
+from automl_infrastructure.experiment.params import OptunaParameterSuggester
 from automl_infrastructure.utils import random_str
 
 
@@ -307,7 +307,7 @@ class Experiment(object):
 
         def optuna_objective(trial):
             # set params of model
-            optuna_suggestor = OptunaParameterSuggestor(trial)
+            optuna_suggestor = OptunaParameterSuggester(trial)
             suggested_params = {}
             for new_param_name, new_param in new_params_flat.items():
                 suggested_params[new_param_name] = new_param.suggest(optuna_suggestor)
