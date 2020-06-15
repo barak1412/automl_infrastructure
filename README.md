@@ -66,4 +66,4 @@ experiment.print_report()
 ```
 
 
-Make sure to look at the [docs](https://htmlpreview.github.io/?https://github.com/barak1412/automl_infrastructure/blob/master/docs/sphinx/build/html/index.html).
+Make sure to look at the [docs](https://htmlpreview.github.io/?https://github.com/barak1412/automl_infrastructure/blob/master/docs/sphinx/build/html/index.html) and [examples](/examples).
