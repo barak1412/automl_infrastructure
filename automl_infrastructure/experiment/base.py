@@ -416,12 +416,15 @@ class Experiment(object):
         # set best score
         self._models_best_scores[model.name] = np.mean(test_scores)
         self._models_train_best_scores[model.name] = np.mean(train_scores)
+
         # set observations
-        self._generate_model_observations(model.name, train_y_true_lst, train_classifier_predictions_lst,
-                                          test_y_true_lst, test_classifier_predictions_lst)
+        if len(self._observations) > 0:
+            self._generate_model_observations(model.name, train_y_true_lst, train_classifier_predictions_lst,
+                                              test_y_true_lst, test_classifier_predictions_lst)
         # set visualizations
-        self._generate_model_visualizations(model.name, train_y_true_lst, train_classifier_predictions_lst,
-                                            test_y_true_lst, test_classifier_predictions_lst)
+        if len(self._visualizations):
+            self._generate_model_visualizations(model.name, train_y_true_lst, train_classifier_predictions_lst,
+                                                test_y_true_lst, test_classifier_predictions_lst)
 
     def _generate_model_observations(self, model_name, train_y_true_lst, train_classifier_predictions_lst,
                                      test_y_true_lst, test_classifier_predictions_lst):
