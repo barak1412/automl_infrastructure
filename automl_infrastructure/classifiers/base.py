@@ -167,7 +167,7 @@ class BasicClassifier(Classifier, ABC):
             new_column_names = self._vector_features_mapping[feature]
         else:
             # retrieve feature vector length, assuming DataFrame isn't empty
-            vector_dim = len(df[feature][0])
+            vector_dim = len(df[feature].iloc[0])
 
             # generate columns
             random_postfix = random_str(5)
